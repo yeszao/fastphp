@@ -1,1 +1,1 @@
-<a class="big" href="../item/">修改成功，点击返回</a>
+<a class="big" href="../item/index">修改成功，点击返回</a>
