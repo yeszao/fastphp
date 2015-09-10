@@ -13,6 +13,42 @@ class Fast {
         $this->callHook();
     }
 
+    // 主请求方法，主要目的是拆分URL请求
+    function callHook() {
+
+        if (!empty($_GET['url'])){
+            $url = $_GET['url'];
+            $urlArray = explode("/",$url);
+            
+            // 获取控制器名
+            $controllerName = ucfirst(empty($urlArray[0]) ? 'Index' : $urlArray[0]);
+            $controller = $controllerName . 'Controller';
+            
+            // 获取动作名
+            array_shift($urlArray);
+            $action = empty($urlArray[0]) ? 'index' : $urlArray[0];
+            
+            //获取URL参数
+            array_shift($urlArray);
+            $queryString = empty($urlArray) ? array() : $urlArray;
+        }
+        
+        // 数据为空的处理
+        $action = empty($action) ? 'index' : $action;
+        $queryString  = empty($queryString) ? array() : $queryString;
+        
+        // 实例化控制器
+        $int = new $controller($controllerName, $action);
+    
+        // 如果控制器存和动作存在，这调用并传入URL参数
+        if ((int)method_exists($controller, $action)) {
+            call_user_func_array(array($int, $action), $queryString);
+        } else {
+            exit($controller . "控制器不存在");
+        }
+    }
+     
+    
     // 检测开发环境
     function setReporting() {
         if (APP_DEBUG == true) {
@@ -56,56 +92,8 @@ class Fast {
         }
     }
      
-    // 主请求方法，主要目的是拆分URL请求
-    function callHook() {
-
-        //获取 URL地址
-        $url = isset($_GET['url']) ? $_GET['url'] : '';
-     
-        $urlArray = array();
-        
-        // 获取控制器名
-        $urlArray = explode("/",$url);
-        $controller = $urlArray[0];
-        
-        // 获取动作名
-        array_shift($urlArray);
-        if ( !empty($urlArray) && !isset($urlArray)){
-            $action = $urlArray[0];
-        } else {
-            $action = 'index';
-        }
- //       $action = $urlArray[0]=='' ? 'index': $urlArray[0];
-        
-        // 获取URL参数
-        array_shift($urlArray);
-        $queryString = $urlArray;
-       
-        // 自动转换成对应控制器名
-        if ($controller){
-            $controllerName = $controller;
-        } else{
-            $controller = 'index';
-            $controllerName = 'index';
-            $action = 'index';
-        }
-        $controller = ucwords($controller);
-        $controller .= 'Controller';
-
-        // 实例化控制器
-        $int = new $controller($controllerName, $action);
-    
-        // 如果控制器存在 $action 动作，这调用并传入URL参数
-        if ((int)method_exists($controller, $action)) {
-            call_user_func_array(array($int, $action), $queryString);
-        } else {
-            /* 错误代码 */
-        }
-    }
-     
-    /** 自动加载控制器和模型类 **/
-     
-     static function loadClass($class) {
+    //自动加载控制器和模型类 
+    static function loadClass($class) {
         $frameworks = ROOT . $class . EXT;
         $controllers = APP_PATH . 'controllers/' . $class . EXT;
         $models = APP_PATH . 'models/' . $class . EXT;
