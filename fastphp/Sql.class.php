@@ -5,7 +5,6 @@ class Sql {
     protected $_result;
 
     /** 连接数据库 **/
-
     function connect($address, $account, $pwd, $name) {
         $this->_dbHandle = @mysql_connect($address, $account, $pwd);
         if ($this->_dbHandle != 0) {
@@ -22,7 +21,6 @@ class Sql {
     }
  
     /** 从数据库断开 **/
- 
     function disconnect() {
         if (@mysql_close($this->_dbHandle) != 0) {
             return 1;
@@ -30,19 +28,26 @@ class Sql {
             return 0;
         }
     }
+    
     /** 查询所有 **/
     function selectAll() {
         $query = 'select * from `'.$this->_table.'`';
         return $this->query($query);
     }
+    
     /** 根据条件 (id) 查询 **/  
     function select($id) {
         $query = 'select * from `'.$this->_table.'` where `id` = \''.mysql_real_escape_string($id).'\'';
-        return $this->query($query, 1);    
+        return $this->query($query, 1);
+    }
+    
+    /** 根据条件 (id) 删除 **/  
+    function delete($id) {
+        $query = 'delete from `'.$this->_table.'` where `id` = \''.mysql_real_escape_string($id).'\'';
+        return $this->query($query); 
     }
      
     /** 自定义SQL查询 **/
- 
     function query($query, $singleResult = 0) {
  
         $this->_result = mysql_query($query, $this->_dbHandle);
@@ -77,14 +82,13 @@ class Sql {
     }
  
     /** 释放查询资源 **/
- 
     function freeResult() {
         mysql_free_result($this->_result);
     }
- 
+    
     /** 获取错误信息 **/
- 
     function getError() {
         return mysql_error($this->_dbHandle);
     }
+    
 }
