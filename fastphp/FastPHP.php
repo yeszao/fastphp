@@ -14,7 +14,7 @@ const EXT = '.class.php';
 require APP_PATH . 'config/config.php';
 
 //包含核心框架类
-require ROOT . 'Fast.php';
+require ROOT . 'Core.php';
 
 // 实例化核心类
 $fast = new Fast;
