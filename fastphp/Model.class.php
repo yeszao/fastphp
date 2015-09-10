@@ -1,6 +1,7 @@
 <?php
 class Model extends Sql {
     protected $_model;
+    protected $_table;
  
     function __construct() {
  
