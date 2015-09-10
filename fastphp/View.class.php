@@ -23,19 +23,26 @@ class View {
      
     function render() {
         extract($this->variables);
-         
-        if (file_exists(APP_PATH . 'views/' . $this->_controller . '/header.php')) {
-            include (APP_PATH . 'views/' . $this->_controller . '/header.php');
+        $defaultHeader = APP_PATH . 'application/views/header.php';
+        $defaultFooter = APP_PATH . 'application/views/footer.php';
+        $controllerHeader = APP_PATH . 'application/views/' . $this->_controller . '/header.php';
+        $controllerFooter = APP_PATH . 'application/views/' . $this->_controller . '/footer.php';
+        
+        // 页头文件
+        if (file_exists($controllerHeader)) {
+            include ($controllerHeader);
         } else {
-            include (APP_PATH . 'views/header.php');
+            include ($defaultHeader);
         }
 
-        include (APP_PATH . 'views/' . $this->_controller . '/' . $this->_action . '.php');       
-         
-        if (file_exists(APP_PATH . 'views/' . $this->_controller . '/footer.php')) {
-            include (APP_PATH . 'views/' . $this->_controller . '/footer.php');
+        // 页内容文件
+        include (APP_PATH . 'application/views/' . $this->_controller . '/' . $this->_action . '.php');
+        
+        // 页脚文件
+        if (file_exists($controllerFooter)) {
+            include ($controllerFooter);
         } else {
-            include (APP_PATH . 'views' . '/footer.php');
+            include ($defaultFooter);
         }
     }
  

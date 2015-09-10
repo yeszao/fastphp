@@ -95,8 +95,8 @@ class Fast {
     //自动加载控制器和模型类 
     static function loadClass($class) {
         $frameworks = ROOT . $class . EXT;
-        $controllers = APP_PATH . 'controllers/' . $class . EXT;
-        $models = APP_PATH . 'models/' . $class . EXT;
+        $controllers = APP_PATH . 'application/controllers/' . $class . EXT;
+        $models = APP_PATH . 'application/models/' . $class . EXT;
 
         if (file_exists($frameworks)) {
             // 加载框架核心类
