@@ -1,4 +1,6 @@
 <br />
 <?php echo $todo; ?>
 <br />
-<a href="/item/index/">item增查改删</a>
+<br />
+
+<a href="<?php echo APP_URL ?>/item/index/">增查改删示例</a>

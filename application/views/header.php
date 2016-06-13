@@ -17,17 +17,16 @@
         }
  
         a {
-            color:#222222;
+            color:blue;
             font-family:georgia,times;
-            font-size:24px;
+            font-size:20px;
             font-weight:normal;
             line-height:1.2em;
-            color:black;
             text-decoration:none;
          }
  
         a:hover {
-            background-color:#BCFC3D;
+            text-decoration:underline;
         }
 
         h1 {
