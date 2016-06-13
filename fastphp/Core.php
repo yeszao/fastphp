@@ -2,10 +2,11 @@
 /**
  * FastPHP核心框架
  */
-class Fast {
-
+class Fast
+{
     // 运行程序
-    function run() {
+    function run()
+    {
         spl_autoload_register(array($this, 'loadClass'));
         $this->setReporting();
         $this->removeMagicQuotes();
@@ -14,11 +15,11 @@ class Fast {
     }
 
     // 主请求方法，主要目的是拆分URL请求
-    function callHook() {
-
-        if (!empty($_GET['url'])){
+    function callHook()
+    {
+        if (!empty($_GET['url'])) {
             $url = $_GET['url'];
-            $urlArray = explode("/",$url);
+            $urlArray = explode("/", $url);
             
             // 获取控制器名
             $controllerName = ucfirst(empty($urlArray[0]) ? 'Index' : $urlArray[0]);
@@ -50,7 +51,8 @@ class Fast {
      
     
     // 检测开发环境
-    function setReporting() {
+    function setReporting()
+    {
         if (APP_DEBUG == true) {
             error_reporting(E_ALL);
             ini_set('display_errors','On');
@@ -63,14 +65,16 @@ class Fast {
     }
      
     // 删除敏感字符
-    function stripSlashesDeep($value) {
+    function stripSlashesDeep($value)
+    {
         $value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
         return $value;
     }
 
     // 检测敏感字符并删除 
-    function removeMagicQuotes() {
-        if ( get_magic_quotes_gpc() ) {
+    function removeMagicQuotes()
+    {
+        if ( get_magic_quotes_gpc()) {
             $_GET = stripSlashesDeep($_GET );
             $_POST = stripSlashesDeep($_POST );
             $_COOKIE = stripSlashesDeep($_COOKIE);
@@ -79,7 +83,8 @@ class Fast {
     }
      
     // 检测自定义全局变量（register globals）并移除
-    function unregisterGlobals() {
+    function unregisterGlobals()
+    {
         if (ini_get('register_globals')) {
             $array = array('_SESSION', '_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
            foreach ($array as $value) {
@@ -93,7 +98,8 @@ class Fast {
     }
      
     //自动加载控制器和模型类 
-    static function loadClass($class) {
+    static function loadClass($class)
+    {
         $frameworks = ROOT . $class . EXT;
         $controllers = APP_PATH . 'application/controllers/' . $class . EXT;
         $models = APP_PATH . 'application/models/' . $class . EXT;

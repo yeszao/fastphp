@@ -1,17 +1,16 @@
 <?php
-class Model extends Sql {
+
+class Model extends Sql
+{
     protected $_model;
     protected $_table;
  
-    function __construct() {
- 
+    function __construct()
+    {
         // 连接数据库
         $this->connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
         
-        // 转换模型+Model为模型名称
-        
-        
-        // 获取对象所属类的名称
+        // 获取模型名称
         $this->_model = get_class($this);
         $this->_model = rtrim($this->_model, 'Model');
         
@@ -19,6 +18,7 @@ class Model extends Sql {
         $this->_table = strtolower($this->_model);
     }
  
-    function __destruct() {
+    function __destruct()
+    {
     }
 }
