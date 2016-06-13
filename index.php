@@ -7,4 +7,4 @@ define('APP_PATH', __DIR__.'/');
 define('APP_DEBUG', true);
 
 // 加载框架
-require './fastphp/FastPHP.php'; 
+require './fastphp/FastPHP.php';

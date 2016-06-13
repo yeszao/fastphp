@@ -6,8 +6,9 @@ class ItemController extends Controller
     function index()
     {
         $item = new ItemModel;
+        $todo = $item->query('select * from item');
         $this->set('title', '全部条目');
-        $this->set('todo', $item->query('select * from item'));
+        $this->set('todo', $todo);
     }
     
     // 添加记录，测试框架DB记录创建（Create）

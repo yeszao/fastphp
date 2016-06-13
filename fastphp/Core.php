@@ -17,13 +17,15 @@ class Fast
     // 主请求方法，主要目的是拆分URL请求
     function callHook()
     {
+        $controllerName = 'Index';
+        $action = 'index';
+
         if (!empty($_GET['url'])) {
             $url = $_GET['url'];
-            $urlArray = explode("/", $url);
+            $urlArray = explode('/', $url);
             
             // 获取控制器名
-            $controllerName = ucfirst(empty($urlArray[0]) ? 'Index' : $urlArray[0]);
-            $controller = $controllerName . 'Controller';
+            $controllerName = ucfirst($urlArray[0]);
             
             // 获取动作名
             array_shift($urlArray);
@@ -35,10 +37,10 @@ class Fast
         }
         
         // 数据为空的处理
-        $action = empty($action) ? 'index' : $action;
         $queryString  = empty($queryString) ? array() : $queryString;
         
         // 实例化控制器
+        $controller = $controllerName . 'Controller';
         $int = new $controller($controllerName, $action);
     
         // 如果控制器存和动作存在，这调用并传入URL参数

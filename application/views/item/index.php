@@ -1,4 +1,4 @@
-<form action="../item/add" method="post">
+<form action="../../item/add" method="post">
     <input type="text" value="I have to..." onclick="this.value=''" name="value">
     <input type="submit" value="添加">
 </form>
