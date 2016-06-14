@@ -2,7 +2,7 @@
 /**
  * FastPHP核心框架
  */
-class Fast
+class Core
 {
     // 运行程序
     function run()
@@ -11,11 +11,11 @@ class Fast
         $this->setReporting();
         $this->removeMagicQuotes();
         $this->unregisterGlobals();
-        $this->callHook();
+        $this->Route();
     }
 
-    // 主请求方法，主要目的是拆分URL请求
-    function callHook()
+    // 路由处理
+    function Route()
     {
         $controllerName = 'Index';
         $action = 'index';
@@ -98,7 +98,7 @@ class Fast
         }
     }
 
-    //自动加载控制器和模型类 
+    // 自动加载控制器和模型类 
     static function loadClass($class)
     {
         $frameworks = FRAME_PATH . $class . '.class.php';
