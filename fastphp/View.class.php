@@ -7,22 +7,20 @@ class View
     protected $variables = array();
     protected $_controller;
     protected $_action;
-     
+
     function __construct($controller, $action)
     {
         $this->_controller = $controller;
         $this->_action = $action;
     }
  
-    /** 设置变量方法 **/
- 
-    function set($name, $value)
+    /** 分配变量 **/
+    function assign($name, $value)
     {
         $this->variables[$name] = $value;
     }
  
-    /** 显示 **/
-     
+    /** 渲染显示 **/
     function render()
     {
         extract($this->variables);
@@ -48,5 +46,4 @@ class View
             include ($defaultFooter);
         }
     }
- 
 }

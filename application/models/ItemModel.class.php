@@ -1,18 +1,20 @@
 <?php
- 
+
 class ItemModel extends Model
 {
-    /** 新增数据 **/
+    /** 新增数据，实际应用一般放在基类，提高复用 **/
     function add($value)
     { 
-        $query = 'insert into `'.$this->_table.'` (item_name) values (\''.mysql_real_escape_string($value).'\')';
-        return $this->query($query);
+        $sql = sprintf("insert into `%s` (`item_name`) values ('%s')", $this->_table, $value);
+
+        return $this->query($sql);
     }
     
-    /** 新增数据 **/
+    /** 修改数据 **/
     function update($id, $value)
     {
-        $query = 'update `'.$this->_table.'` set item_name = \''.mysql_real_escape_string($value).'\' where `id` = \''.mysql_real_escape_string($id).'\'';
-        return $this->query($query);
+        $sql = sprintf("update `%s` set item_name = '%s' where `id` = '%s'", $this->_table, $value, $id);
+
+        return $this->query($sql);
     }    
 }

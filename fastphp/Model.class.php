@@ -8,7 +8,7 @@ class Model extends Sql
     function __construct()
     {
         // 连接数据库
-        $this->connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
+        $this->connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
         
         // 获取模型名称
         $this->_model = get_class($this);
