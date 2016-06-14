@@ -14,8 +14,8 @@ class ItemController extends Controller
     // 添加记录，测试框架DB记录创建（Create）
     public function add()
     {
-        $value = $_POST['value'];
-        $count = (new ItemModel)->add($value);
+        $data['item_name'] = $_POST['value'];
+        $count = (new ItemModel)->add($data);
 
         $this->assign('title', '添加成功');
         $this->assign('count', $count);
@@ -33,9 +33,8 @@ class ItemController extends Controller
     // 更新记录，测试框架DB记录更新（Update）
     public function update()
     {
-        $id = $_POST['id'];
-        $value = $_POST['value'];
-        $count = (new ItemModel)->update($id, $value);
+        $data = array('id' => $_POST['id'], 'item_name' => $_POST['value']);
+        $count = (new ItemModel)->update($data['id'], $data);
 
         $this->assign('title', '修改成功');
         $this->assign('count', $count);
