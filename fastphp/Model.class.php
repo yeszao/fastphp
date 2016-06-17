@@ -12,7 +12,8 @@ class Model extends Sql
         
         // 获取模型名称
         $this->_model = get_class($this);
-        $this->_model = rtrim($this->_model, 'Model');
+        //$this->_model = rtrim($this->_model, 'Model');
+        $this->_model = substr($this->_model, 0, -5);
         
         // 数据库表名与类名一致
         $this->_table = strtolower($this->_model);
