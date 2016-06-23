@@ -19,25 +19,28 @@ class Core
     {
         $controllerName = 'Index';
         $action = 'index';
+        $param = array();
 
         if (!empty($_GET['url'])) {
+            
             $url = $_GET['url'];
+
+            // 使用“/”分割字符串，并保存在数组中
             $urlArray = explode('/', $url);
+            // 删除空的数组元素
+            $urlArray = array_filter($urlArray);
             
             // 获取控制器名
             $controllerName = ucfirst($urlArray[0]);
             
             // 获取动作名
             array_shift($urlArray);
-            $action = empty($urlArray[0]) ? 'index' : $urlArray[0];
+            $action = $urlArray ? $urlArray[0] : 'index';
             
-            //获取URL参数
+            // 获取URL参数
             array_shift($urlArray);
-            $queryString = empty($urlArray) ? array() : $urlArray;
+            $param = $urlArray ? $urlArray : array();
         }
-
-        // 数据为空的处理
-        $queryString  = empty($queryString) ? array() : $queryString;
 
         // 实例化控制器
         $controller = $controllerName . 'Controller';
@@ -45,7 +48,7 @@ class Core
 
         // 如果控制器存和动作存在，这调用并传入URL参数
         if ((int)method_exists($controller, $action)) {
-            call_user_func_array(array($dispatch, $action), $queryString);
+            call_user_func_array(array($dispatch, $action), $param);
         } else {
             exit($controller . "控制器不存在");
         }
