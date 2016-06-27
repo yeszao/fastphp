@@ -9,7 +9,7 @@ class Controller
     protected $_view;
  
     // 构造函数，初始化属性，并实例化对应模型
-    function __construct($controller, $action)
+    public function __construct($controller, $action)
     {
         $this->_controller = $controller;
         $this->_action = $action;
@@ -17,13 +17,13 @@ class Controller
     }
 
     // 分配变量
-    function assign($name, $value)
+    public function assign($name, $value)
     {
         $this->_view->assign($name, $value);
     }
 
     // 渲染视图
-    function __destruct()
+    public function __destruct()
     {
         $this->_view->render();
     }

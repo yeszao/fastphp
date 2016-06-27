@@ -5,7 +5,7 @@
 class Core
 {
     // 运行程序
-    function run()
+    public function run()
     {
         spl_autoload_register(array($this, 'loadClass'));
         $this->setReporting();
@@ -15,7 +15,7 @@ class Core
     }
 
     // 路由处理
-    function Route()
+    public function Route()
     {
         $controllerName = 'Index';
         $action = 'index';
@@ -55,7 +55,7 @@ class Core
     }
 
     // 检测开发环境
-    function setReporting()
+    public function setReporting()
     {
         if (APP_DEBUG === true) {
             error_reporting(E_ALL & ~E_NOTICE);
@@ -69,14 +69,14 @@ class Core
     }
 
     // 删除敏感字符
-    function stripSlashesDeep($value)
+    public function stripSlashesDeep($value)
     {
         $value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
         return $value;
     }
 
     // 检测敏感字符并删除
-    function removeMagicQuotes()
+    public function removeMagicQuotes()
     {
         if ( get_magic_quotes_gpc()) {
             $_GET = stripSlashesDeep($_GET );
@@ -87,7 +87,7 @@ class Core
     }
 
     // 检测自定义全局变量（register globals）并移除
-    function unregisterGlobals()
+    public function unregisterGlobals()
     {
         if (ini_get('register_globals')) {
             $array = array('_SESSION', '_POST', '_GET', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES');
@@ -102,7 +102,7 @@ class Core
     }
 
     // 自动加载控制器和模型类 
-    static function loadClass($class)
+    public static function loadClass($class)
     {
         $frameworks = FRAME_PATH . $class . '.class.php';
         $controllers = APP_PATH . 'application/controllers/' . $class . '.class.php';

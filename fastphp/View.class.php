@@ -14,14 +14,14 @@ class View
         $this->_action = $action;
     }
  
-    /** 分配变量 **/
-    function assign($name, $value)
+    // 分配变量
+    public function assign($name, $value)
     {
         $this->variables[$name] = $value;
     }
  
-    /** 渲染显示 **/
-    function render()
+    // 渲染显示
+    public function render()
     {
         extract($this->variables);
         $defaultHeader = APP_PATH . 'application/views/header.php';
