@@ -4,22 +4,46 @@ class Sql
 {
     protected $_dbHandle;
     protected $_result;
+    private $filter = '';
 
     // 连接数据库
     public function connect($host, $user, $pass, $dbname)
     {
         try {
             $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $host, $dbname);
-            $this->_dbHandle = new PDO($dsn, $user, $pass, array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC));
+            $option = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
+            $this->_dbHandle = new PDO($dsn, $user, $pass, $option);
         } catch (PDOException $e) {
             exit('错误: ' . $e->getMessage());
         }
     }
 
+    // 查询条件
+    public function where($where = array())
+    {
+        if (isset($where)) {
+            $this->filter .= ' WHERE ';
+            $this->filter .= implode(' ', $where);
+        }
+
+        return $this;
+    }
+
+    // 排序条件
+    public function order($order = array())
+    {
+        if(isset($order)) {
+            $this->filter .= ' ORDER BY ';
+            $this->filter .= implode(',', $order);
+        }
+
+        return $this;
+    }
+
     // 查询所有
     public function selectAll()
     {
-        $sql = sprintf("select * from `%s`", $this->_table);
+        $sql = sprintf("select * from `%s` %s", $this->_table, $this->filter);
         $sth = $this->_dbHandle->prepare($sql);
         $sth->execute();
 
@@ -32,7 +56,7 @@ class Sql
         $sql = sprintf("select * from `%s` where `id` = '%s'", $this->_table, $id);
         $sth = $this->_dbHandle->prepare($sql);
         $sth->execute();
-        
+
         return $sth->fetch();
     }
 

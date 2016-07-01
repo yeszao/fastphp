@@ -18,8 +18,4 @@ class Model extends Sql
         // 数据库表名与类名一致
         $this->_table = strtolower($this->_model);
     }
-
-    public function __destruct()
-    {
-    }
 }
