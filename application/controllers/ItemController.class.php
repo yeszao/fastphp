@@ -9,6 +9,7 @@ class ItemController extends Controller
 
         $this->assign('title', '全部条目');
         $this->assign('items', $items);
+        $this->render();
     }
     
     // 添加记录，测试框架DB记录创建（Create）
@@ -19,6 +20,7 @@ class ItemController extends Controller
 
         $this->assign('title', '添加成功');
         $this->assign('count', $count);
+        $this->render();
     }
     
     // 查看记录，测试框架DB记录读取（Read）
@@ -28,6 +30,7 @@ class ItemController extends Controller
 
         $this->assign('title', '正在查看' . $item['item_name']);
         $this->assign('item', $item);
+        $this->render();
     }
     
     // 更新记录，测试框架DB记录更新（Update）
@@ -38,6 +41,7 @@ class ItemController extends Controller
 
         $this->assign('title', '修改成功');
         $this->assign('count', $count);
+        $this->render();
     }
     
     // 删除记录，测试框架DB记录删除（Delete）
@@ -47,5 +51,6 @@ class ItemController extends Controller
 
         $this->assign('title', '删除成功');
         $this->assign('count', $count);
+        $this->render();
     }
 }

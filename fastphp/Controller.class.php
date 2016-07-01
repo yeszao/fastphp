@@ -23,7 +23,7 @@ class Controller
     }
 
     // 渲染视图
-    public function __destruct()
+    public function render()
     {
         $this->_view->render();
     }

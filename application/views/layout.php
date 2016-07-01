@@ -1,5 +1,5 @@
 <br />
-<?php echo $todo; ?>
+<?php echo $content; ?>
 <br />
 <br />
 
