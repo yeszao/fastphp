@@ -58,7 +58,7 @@ class Core
     public function setReporting()
     {
         if (APP_DEBUG === true) {
-            error_reporting(E_ALL & ~E_NOTICE);
+            error_reporting(E_ALL);
             ini_set('display_errors','On');
         } else {
             error_reporting(E_ALL);
@@ -71,18 +71,18 @@ class Core
     // 删除敏感字符
     public function stripSlashesDeep($value)
     {
-        $value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
+        $value = is_array($value) ? array_map(array($this, 'stripSlashesDeep'), $value) : stripslashes($value);
         return $value;
     }
 
     // 检测敏感字符并删除
     public function removeMagicQuotes()
     {
-        if ( get_magic_quotes_gpc()) {
-            $_GET = stripSlashesDeep($_GET );
-            $_POST = stripSlashesDeep($_POST );
-            $_COOKIE = stripSlashesDeep($_COOKIE);
-            $_SESSION = stripSlashesDeep($_SESSION);
+        if (get_magic_quotes_gpc()) {
+            $_GET = isset($_GET) ? $this->stripSlashesDeep($_GET ) : '';
+            $_POST = isset($_POST) ? $this->stripSlashesDeep($_POST ) : '';
+            $_COOKIE = isset($_COOKIE) ? $this->stripSlashesDeep($_COOKIE) : '';
+            $_SESSION = isset($_SESSION) ? $this->stripSlashesDeep($_SESSION) : '';
         }
     }
 
