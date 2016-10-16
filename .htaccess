@@ -3,13 +3,13 @@
 
     # 如果访问的文件存在，则直接访问，不重定向
     RewriteCond %{REQUEST_FILENAME} !-f
-	# 如果访问的目录存在，则直接访问，不重定向
+    # 如果访问的目录存在，则直接访问，不重定向
     RewriteCond %{REQUEST_FILENAME} !-d
 
-	# 如果访问的文件或目录不存在，则重定向所有请求
-	# 到：index.php?url=<PARAMS>。
-	# 例如：当我们请求<域名>item/index时，实际上是
-	# 请求<域名>index.php?url=item/index，在PHP中
-	# 用 GET['url'] 就能拿到字符串item/index
+    # 如果访问的文件或目录不存在，则重定向所有请求
+    # 到：index.php?url=<PARAMS>。
+    # 例如：当我们请求<域名>item/index时，实际上是
+    # 请求<域名>index.php?url=item/index，在PHP中
+    # 用 GET['url'] 就能拿到字符串item/index
     RewriteRule ^(.*)$ index.php?url=$1 [PT,L]
 </IfModule>
