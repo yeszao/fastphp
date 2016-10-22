@@ -15,7 +15,7 @@ class Core
     }
 
     // 路由处理
-    public function Route()
+    public function route()
     {
         $controllerName = 'Index';
         $action = 'index';
