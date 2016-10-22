@@ -2,7 +2,7 @@
 
 ## 简述
 
-**FastPHP**是一款简单的PHP MVC框架，主要目的是方便在 **[歪麦博客]** 上学习PHP MVC框架的同学下载源代码。
+**fastphp**是一款简单的PHP MVC框架，主要目的是方便在 **[歪麦博客]** 上学习PHP MVC框架的同学下载源代码。
 关于《手把手编写自己的PHP MVC框架》的教程，请参考网站：http://www.awaimai.com/128.html 。
 
 要求：
@@ -13,33 +13,36 @@
 
 因为默认情况下git忽略提交空目录，所以在教程中提到的目录结构：
 ````
-+ application
-+ config
-+ fastphp
-+ public
-+ runtime
-  + cache
-  + logs
-  + sessions
-+ scripts
+project  WEB部署目录
+├─application           应用目录
+│  ├─controllers        控制器目录
+│  ├─models             模块目录
+│  ├─views              视图目录
+├─config                配置文件目录
+├─fastphp               核心框架目录
+├─runtime               运行目录
+│  ├─caches             缓存文目录
+│  ├─logs               日志目录
+│  ├─sessions           缓存目录
+├─index.php             入口文件
 ```
-中，不包含public、runtime和scripts三个目录，这几个目录仅保留来未来备用，当前框架使用不受影响。
+中，不包含runtime目录，这个目录仅保留未来备用，当前框架使用不受影响。
 
 ## 使用
 
 ### 1.克隆代码
 
 ```
-git clone https://github.com/yeszao/FastPHP.git
+git clone https://github.com/yeszao/fastphp.git
 ```
 
 ### 2. 创建数据库
 
-在数据库中创建名为 todo 的数据库，并插入两条记录，命令：
+在数据库中创建名为 project 的数据库，并插入两条记录，命令：
 
 ```
-CREATE DATABASE `todo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `todo`;
+CREATE DATABASE `project` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `project`;
 
 CREATE TABLE `item` (
     `id` int(11) NOT NULL auto_increment,
@@ -56,7 +59,7 @@ INSERT INTO `item` VALUES(2, 'Lets go!');
 打开配置文件 config/config.php ，使之与自己的数据库匹配
 
 ```
-	define('DB_NAME', 'todo');
+	define('DB_NAME', 'project');
 	define('DB_USER', 'root');
 	define('DB_PASSWORD', 'root');
 	define('DB_HOST', 'localhost');
@@ -67,9 +70,9 @@ INSERT INTO `item` VALUES(2, 'Lets go!');
 打开 index.php 文件，修改
 
 ```
-define('APP_URL', 'http://localhost/fastphp');
+define('APP_URL', 'http://localhost/project');
 ```
 
-为自己方式代码的具体位置，默认是localhost的fastphp目录下。
+为自己代码的具体位置，默认是localhost的project目录下。
 
-然后就可以访问了：http://localhost/fastphp/
+然后就可以访问了：http://localhost/project/
