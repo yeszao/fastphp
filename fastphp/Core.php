@@ -21,10 +21,8 @@ class Core
         $action = 'index';
         $param = array();
 
-        if (!empty($_GET['url'])) {
-            
-            $url = $_GET['url'];
-
+		$url = isset($_GET['url']) ? $_GET['url'] : false;
+        if ($url) {
             // 使用“/”分割字符串，并保存在数组中
             $urlArray = explode('/', $url);
             // 删除空的数组元素
