@@ -11,7 +11,7 @@ class Core
         $this->setReporting();
         $this->removeMagicQuotes();
         $this->unregisterGlobals();
-        $this->Route();
+        $this->route();
     }
 
     // 路由处理
