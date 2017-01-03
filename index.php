@@ -10,4 +10,4 @@ define('APP_DEBUG', true);
 define('APP_URL', 'http://localhost/project');
 
 // 加载框架
-require './fastphp/fastphp.php';
+require './fastphp/Fastphp.php';
