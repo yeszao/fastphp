@@ -25,10 +25,10 @@ class Fastphp
     public function route()
     {
         $controllerName = $this->_config['defaultController'];
-        $action = $this->_config['defaultAction'];
+        $actionName = $this->_config['defaultAction'];
         $param = array();
 
-		$url = isset($_GET['url']) ? $_GET['url'] : false;
+		$url = trim($_SERVER['REQUEST_URI'], '/');
         if ($url) {
             // 使用“/”分割字符串，并保存在数组中
             $urlArray = explode('/', $url);
@@ -40,7 +40,7 @@ class Fastphp
             
             // 获取动作名
             array_shift($urlArray);
-            $action = $urlArray ? $urlArray[0] : 'index';
+            $actionName = $urlArray ? $urlArray[0] : 'index';
             
             // 获取URL参数
             array_shift($urlArray);
@@ -52,13 +52,13 @@ class Fastphp
         if (!class_exists($controller)) {
             exit($controller . '控制器不存在');
         }
-        if (!method_exists($controller, $action)) {
-            exit($action . '方法不存在');
+        if (!method_exists($controller, $actionName)) {
+            exit($actionName . '方法不存在');
         }
 
         // 如果控制器存和操作存在，调用并传入URL参数
-        $dispatch = new $controller($controllerName, $action);
-        call_user_func_array(array($dispatch, $action), $param);
+        $dispatch = new $controller($controllerName, $actionName);
+        call_user_func_array(array($dispatch, $actionName), $param);
 
     }
 
