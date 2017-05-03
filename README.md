@@ -18,14 +18,10 @@ project  WEB部署目录
 │  ├─models             模块目录
 │  ├─views              视图目录
 ├─config                配置文件目录
-├─fastphp               核心框架目录
-├─runtime               运行目录
-│  ├─caches             缓存文目录
-│  ├─logs               日志目录
-│  ├─sessions           缓存目录
+├─fastphp               框架核心目录
+├─static                静态文件目录
 ├─index.php             入口文件
 ```
-因为默认情况下git忽略提交空目录，所以在教程中提到的目录结构中，不包含runtime目录，这个目录仅保留未来备用，当前框架使用不受影响。
 
 ## 使用
 
@@ -58,10 +54,33 @@ INSERT INTO `item` VALUES(2, 'Lets go!');
 打开配置文件 config/config.php ，使之与自己的数据库匹配
 
 ```
-	define('DB_NAME', 'project');
-	define('DB_USER', 'root');
-	define('DB_PASSWORD', 'root');
-	define('DB_HOST', 'localhost');
+$config['db']['host'] = 'localhost';
+$config['db']['username'] = 'root';
+$config['db']['password'] = '123456';
+$config['db']['dbname'] = 'project';
+```
+
+### 4.配置Nginx或Apache
+Apache：
+```
+<IfModule mod_rewrite.c>
+    # 打开Rerite功能
+    RewriteEngine On
+
+    # 如果请求的是真实存在的文件或目录，直接访问
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 如果访问的文件或目录不是真事存在，分发请求至 index.php
+    RewriteRule . index.php
+</IfModule>
+```
+Nginx：
+```
+location / {
+    # 重新向所有非真是存在的请求到index.php
+    try_files $uri $uri/ /index.php$args;
+}
 ```
 
 ### 4.测试访问
