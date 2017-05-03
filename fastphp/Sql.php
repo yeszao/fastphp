@@ -7,12 +7,12 @@ class Sql
     private $filter = '';
 
     // 连接数据库
-    public function connect($host, $user, $pass, $dbname)
+    public function connect($host, $username, $password, $dbname)
     {
         try {
             $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $host, $dbname);
             $option = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
-            $this->_dbHandle = new PDO($dsn, $user, $pass, $option);
+            $this->_dbHandle = new PDO($dsn, $username, $password, $option);
         } catch (PDOException $e) {
             exit('错误: ' . $e->getMessage());
         }

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * 模块名称必须与数据库表名一致，例如数据库表名为：item，
- * 那么Model名应该为：ItemModel
- * Class ItemModel
+ * 用户模块，一般与数据库表名对应
+ * 例如表名为：item，那么Model类名应该为：ItemModel
+ * 也可以添加一个$_table属性指定表名
  */
 class ItemModel extends Model
 {
-    /* 业务逻辑层实现 */
+    public $_table = 'item';
 }
