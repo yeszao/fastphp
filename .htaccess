@@ -1,15 +1,11 @@
 <IfModule mod_rewrite.c>
+    # æ‰“å¼€ReriteåŠŸèƒ½
     RewriteEngine On
 
-    # Èç¹û·ÃÎÊµÄÎÄ¼þ´æÔÚ£¬ÔòÖ±½Ó·ÃÎÊ£¬²»ÖØ¶¨Ïò
+    # å¦‚æžœè¯·æ±‚çš„æ˜¯çœŸå®žå­˜åœ¨çš„æ–‡ä»¶æˆ–ç›®å½•ï¼Œç›´æŽ¥è®¿é—®
     RewriteCond %{REQUEST_FILENAME} !-f
-    # Èç¹û·ÃÎÊµÄÄ¿Â¼´æÔÚ£¬ÔòÖ±½Ó·ÃÎÊ£¬²»ÖØ¶¨Ïò
     RewriteCond %{REQUEST_FILENAME} !-d
 
-    # Èç¹û·ÃÎÊµÄÎÄ¼þ»òÄ¿Â¼²»´æÔÚ£¬ÔòÖØ¶¨ÏòËùÓÐÇëÇó
-    # µ½£ºindex.php?url=<PARAMS>¡£
-    # ÀýÈç£ºµ±ÎÒÃÇÇëÇó<ÓòÃû>item/indexÊ±£¬Êµ¼ÊÉÏÊÇ
-    # ÇëÇó<ÓòÃû>index.php?url=item/index£¬ÔÚPHPÖÐ
-    # ÓÃ GET['url'] ¾ÍÄÜÄÃµ½×Ö·û´®item/index
-    RewriteRule ^(.*)$ index.php?url=$1 [PT,L]
+    # å¦‚æžœè®¿é—®çš„æ–‡ä»¶æˆ–ç›®å½•ä¸æ˜¯çœŸäº‹å­˜åœ¨ï¼Œåˆ†å‘è¯·æ±‚è‡³ index.php
+    RewriteRule . index.php
 </IfModule>
