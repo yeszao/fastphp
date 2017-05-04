@@ -4,13 +4,13 @@ class Model extends Sql
 {
     protected $_model;
     protected $_table;
-    public static $dbConfig = [];
+    protected static $_dbConfig = [];
 
     public function __construct()
     {
         // 连接数据库
-        $this->connect(self::$dbConfig['host'], self::$dbConfig['username'], self::$dbConfig['password'],
-            self::$dbConfig['dbname']);
+        $this->connect(self::$_dbConfig['host'], self::$_dbConfig['username'], self::$_dbConfig['password'],
+            self::$_dbConfig['dbname']);
 
         // 获取数据库表名
         if (!$this->_table) {
@@ -22,5 +22,10 @@ class Model extends Sql
             // 数据库表名与类名一致
             $this->_table = strtolower($this->_model);
         }
+    }
+
+    public static function setDbConfig($config)
+    {
+        self::$_dbConfig = $config;
     }
 }
