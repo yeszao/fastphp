@@ -2,8 +2,7 @@
 
 ## 简述
 
-**fastphp**是一款简单的PHP MVC框架，主要目的是方便在 **[歪麦博客]** 上学习PHP MVC框架的同学下载源代码。
-关于《手把手编写自己的PHP MVC框架》的教程，请参考网站：http://www.awaimai.com/128.html 。
+**fastphp**是一款简单的PHP MVC框架，目的是方便学习《手把手编写自己的PHP MVC框架》教程的同学下载源代码，详细介绍请参考网站：http://www.awaimai.com/128.html 。
 
 要求：
 
@@ -12,7 +11,7 @@
 ## 目录说明
 
 ```
-project  WEB部署目录
+project                 根目录
 ├─application           应用目录
 │  ├─controllers        控制器目录
 │  ├─models             模块目录
@@ -61,7 +60,9 @@ $config['db']['dbname'] = 'project';
 ```
 
 ### 4.配置Nginx或Apache
-Apache：
+在Apache或Nginx中创建一个站点，把 project 设置为站点根目录（入口文件 index.php 所在的目录）。
+
+然后设置单一入口， Apache服务器配置：
 ```
 <IfModule mod_rewrite.c>
     # 打开Rerite功能
@@ -75,7 +76,7 @@ Apache：
     RewriteRule . index.php
 </IfModule>
 ```
-Nginx：
+Nginx服务器配置：
 ```
 location / {
     # 重新向所有非真是存在的请求到index.php
@@ -85,4 +86,4 @@ location / {
 
 ### 5.测试访问
 
-然后就可以访问了：http://localhost/
+然后访问站点域名：http://localhost/ 就可以了。
