@@ -5,9 +5,16 @@ class ItemController extends Controller
     // 首页方法，测试框架自定义DB查询
     public function index()
     {
-        $items = (new ItemModel)->selectAll();
+        $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+        if ($keyword) {
+            $items = (new ItemModel())->search($keyword);
+        } else {
+            $items = (new ItemModel)->selectAll();
+        }
 
         $this->assign('title', '全部条目');
+        $this->assign('keyword', $keyword);
         $this->assign('items', $items);
         $this->render();
     }
@@ -23,13 +30,19 @@ class ItemController extends Controller
         $this->render();
     }
     
-    // 查看记录，测试框架DB记录读取（Read）
-    public function view($id = null)
+    // 操作管理
+    public function manage($id = 0)
     {
-        $item = (new ItemModel)->select($id);
+        $item = array();
+        $postUrl = '/item/add';
+        if ($id) {
+            $item = (new ItemModel)->select($id);
+            $postUrl = '/item/update';
+        }
 
-        $this->assign('title', '正在查看' . $item['item_name']);
+        $this->assign('title', '管理条目');
         $this->assign('item', $item);
+        $this->assign('postUrl', $postUrl);
         $this->render();
     }
     
