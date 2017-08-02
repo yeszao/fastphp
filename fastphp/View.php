@@ -38,7 +38,12 @@ class View
             include ($defaultHeader);
         }
 
-        include ($controllerLayout);
+        //判断视图文件是否存在
+        if (file_exists($controllerLayout)) {
+            include ($controllerLayout);
+        } else {
+            echo "<h1>无法找到视图文件</h1>";
+        }
         
         // 页脚文件
         if (file_exists($controllerFooter)) {
