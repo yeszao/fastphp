@@ -79,7 +79,7 @@ $config['db']['dbname'] = 'project';
 Nginx服务器配置：
 ```
 location / {
-    # 重新向所有非真是存在的请求到index.php
+    # 重新向所有非真实存在的请求到index.php
     try_files $uri $uri/ /index.php$args;
 }
 ```
