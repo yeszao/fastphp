@@ -23,7 +23,7 @@ class ItemModel extends Model
     public function search($keyword)
     {
         $sql = "select * from `$this->_table` where `item_name` like '%$keyword%'";
-        $sth = $this->_dbHandle->prepare($sql);
+        $sth = $this->pdo()->prepare($sql);
         $sth->execute();
 
         return $sth->fetchAll();

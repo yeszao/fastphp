@@ -4,11 +4,11 @@
  */
 class Fastphp
 {
-    protected $_config = [];
+    protected $config = [];
 
     public function __construct($config)
     {
-        $this->_config = $config;
+        $this->config = $config;
     }
 
     // 运行程序
@@ -25,8 +25,8 @@ class Fastphp
     // 路由处理
     public function route()
     {
-        $controllerName = $this->_config['defaultController'];
-        $actionName = $this->_config['defaultAction'];
+        $controllerName = $this->config['defaultController'];
+        $actionName = $this->config['defaultAction'];
         $param = array();
 
         $url = $_SERVER['REQUEST_URI'];
@@ -126,8 +126,8 @@ class Fastphp
     // 配置数据库信息
     public function setDbConfig()
     {
-        if ($this->_config['db']) {
-            Model::setDbConfig($this->_config['db']);
+        if ($this->config['db']) {
+            Sql::setConfig($this->config['db']);
         }
     }
 

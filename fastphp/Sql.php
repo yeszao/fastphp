@@ -2,20 +2,19 @@
 
 class Sql
 {
-    protected $_dbHandle;
-    protected $_result;
+    private static $dbConfig = [];
     private $filter = '';
 
     // 连接数据库
-    public function connect($host, $username, $password, $dbname)
+    public function pdo()
     {
-        try {
-            $dsn = sprintf("mysql:host=%s;dbname=%s;charset=utf8", $host, $dbname);
-            $option = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
-            $this->_dbHandle = new PDO($dsn, $username, $password, $option);
-        } catch (PDOException $e) {
-            exit('错误: ' . $e->getMessage());
-        }
+        return Db::pdo(self::$dbConfig);
+    }
+
+    // 保存数据库配置
+    public static function setConfig($config)
+    {
+        self::$dbConfig = $config;
     }
 
     // 查询条件
@@ -43,8 +42,8 @@ class Sql
     // 查询所有
     public function selectAll()
     {
-        $sql = sprintf("select * from `%s` %s", $this->_table, $this->filter);
-        $sth = $this->_dbHandle->prepare($sql);
+        $sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
+        $sth = $this->pdo()->prepare($sql);
         $sth->execute();
 
         return $sth->fetchAll();
@@ -53,8 +52,8 @@ class Sql
     // 根据条件 (id) 查询
     public function select($id)
     {
-        $sql = sprintf("select * from `%s` where `id` = '%s'", $this->_table, $id);
-        $sth = $this->_dbHandle->prepare($sql);
+        $sql = sprintf("select * from `%s` where `id` = '%s'", $this->table, $id);
+        $sth = $this->pdo()->prepare($sql);
         $sth->execute();
 
         return $sth->fetch();
@@ -63,8 +62,8 @@ class Sql
     // 根据条件 (id) 删除
     public function delete($id)
     {
-        $sql = sprintf("delete from `%s` where `id` = '%s'", $this->_table, $id);
-        $sth = $this->_dbHandle->prepare($sql);
+        $sql = sprintf("delete from `%s` where `id` = '%s'", $this->table, $id);
+        $sth = $this->pdo()->prepare($sql);
         $sth->execute();
 
         return $sth->rowCount();
@@ -73,7 +72,7 @@ class Sql
     // 自定义SQL查询，返回影响的行数
     public function query($sql)
     {
-        $sth = $this->_dbHandle->prepare($sql);
+        $sth = $this->pdo()->prepare($sql);
         $sth->execute();
 
         return $sth->rowCount();
@@ -82,7 +81,7 @@ class Sql
     // 新增数据
     public function add($data)
     {
-        $sql = sprintf("insert into `%s` %s", $this->_table, $this->formatInsert($data));
+        $sql = sprintf("insert into `%s` %s", $this->table, $this->formatInsert($data));
 
         return $this->query($sql);
     }
@@ -90,7 +89,7 @@ class Sql
     // 修改数据
     public function update($id, $data)
     {
-        $sql = sprintf("update `%s` set %s where `id` = '%s'", $this->_table, $this->formatUpdate($data), $id);
+        $sql = sprintf("update `%s` set %s where `id` = '%s'", $this->table, $this->formatUpdate($data), $id);
 
         return $this->query($sql);
     }
