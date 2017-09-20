@@ -5,16 +5,16 @@ class Sql
     private static $dbConfig = [];
     private $filter = '';
 
-    // 连接数据库
-    public function pdo()
-    {
-        return Db::pdo(self::$dbConfig);
-    }
-
     // 保存数据库配置
     public static function setConfig($config)
     {
         self::$dbConfig = $config;
+    }
+
+    // 获取数据库连接对象
+    public function getPdo()
+    {
+        return Db::pdo(self::$dbConfig);
     }
 
     // 查询条件
@@ -43,7 +43,7 @@ class Sql
     public function selectAll()
     {
         $sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
-        $sth = $this->pdo()->prepare($sql);
+        $sth = $this->getPdo()->prepare($sql);
         $sth->execute();
 
         return $sth->fetchAll();
@@ -53,7 +53,7 @@ class Sql
     public function select($id)
     {
         $sql = sprintf("select * from `%s` where `id` = '%s'", $this->table, $id);
-        $sth = $this->pdo()->prepare($sql);
+        $sth = $this->getPdo()->prepare($sql);
         $sth->execute();
 
         return $sth->fetch();
@@ -63,7 +63,7 @@ class Sql
     public function delete($id)
     {
         $sql = sprintf("delete from `%s` where `id` = '%s'", $this->table, $id);
-        $sth = $this->pdo()->prepare($sql);
+        $sth = $this->getPdo()->prepare($sql);
         $sth->execute();
 
         return $sth->rowCount();
@@ -72,7 +72,7 @@ class Sql
     // 自定义SQL查询，返回影响的行数
     public function query($sql)
     {
-        $sth = $this->pdo()->prepare($sql);
+        $sth = $this->getPdo()->prepare($sql);
         $sth->execute();
 
         return $sth->rowCount();
