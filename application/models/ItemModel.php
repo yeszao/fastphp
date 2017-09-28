@@ -11,7 +11,7 @@ class ItemModel extends Model
      * 这里就是 item 表
      * @var string
      */
-    public $table = 'item';
+    protected $table = 'item';
 
     /**
      * 搜索功能，因为Sql父类里面没有现成的like搜索，
@@ -24,9 +24,7 @@ class ItemModel extends Model
     {
         $sql = "select * from `$this->table` where `item_name` like :keyword";
         $sth = Db::pdo()->prepare($sql);
-
-        $keyword = '%' . $keyword . '%';
-        $sth->bindParam(':keyword', $keyword);
+        $sth = $this->formatParam($sth, [':keyword' => "%$keyword%"]);
         $sth->execute();
 
         return $sth->fetchAll();

@@ -61,7 +61,7 @@ class ItemController extends Controller
     public function update()
     {
         $data = array('id' => $_POST['id'], 'item_name' => $_POST['value']);
-        $count = (new ItemModel)->update($data['id'], $data);
+        $count = (new ItemModel)->where(['id = :id'], [':id' => $data['id']])->update($data);
 
         $this->assign('title', '修改成功');
         $this->assign('count', $count);

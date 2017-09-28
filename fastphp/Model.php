@@ -3,7 +3,6 @@
 class Model extends Sql
 {
     protected $model;
-    protected $table;
 
     public function __construct()
     {
