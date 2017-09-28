@@ -1,4 +1,10 @@
-<form action="<?php echo $postUrl; ?>" method="post">
+<form  <?php if (isset($item['id'])) { ?>
+            action="/item/update/<?php echo $item['id'] ?>"
+        <?php } else { ?>
+            action="/item/add"
+        <?php } ?>
+      method="post">
+
     <?php if (isset($item['id'])): ?>
         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
     <?php endif; ?>

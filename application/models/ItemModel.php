@@ -7,7 +7,7 @@ class ItemModel extends Model
 {
     /**
      * 自定义当前模型操作的数据库表名称，
-     * 如果不指定默认为类名称的小写字符串，
+     * 如果不指定，默认为类名称的小写字符串，
      * 这里就是 item 表
      * @var string
      */
@@ -22,8 +22,11 @@ class ItemModel extends Model
      */
     public function search($keyword)
     {
-        $sql = "select * from `$this->table` where `item_name` like '%$keyword%'";
+        $sql = "select * from `$this->table` where `item_name` like :keyword";
         $sth = Db::pdo()->prepare($sql);
+
+        $keyword = '%' . $keyword . '%';
+        $sth->bindParam(':keyword', $keyword);
         $sth->execute();
 
         return $sth->fetchAll();

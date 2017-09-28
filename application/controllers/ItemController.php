@@ -10,12 +10,25 @@ class ItemController extends Controller
         if ($keyword) {
             $items = (new ItemModel())->search($keyword);
         } else {
-            $items = (new ItemModel)->selectAll();
+            // 查询所有内容，并按倒序排列输出
+            // where()方法可不传入参数，或者省略
+            $items = (new ItemModel)->where()->order(['id DESC'])->fetchAll();
         }
 
         $this->assign('title', '全部条目');
         $this->assign('keyword', $keyword);
         $this->assign('items', $items);
+        $this->render();
+    }
+
+    // 查看单条记录详情
+    public function detail($id)
+    {
+        // 通过?占位符传入$id参数
+        $item = (new ItemModel())->where(["id = ?"], [$id])->fetch();
+
+        $this->assign('title', '条目详情');
+        $this->assign('item', $item);
         $this->render();
     }
     
@@ -34,15 +47,13 @@ class ItemController extends Controller
     public function manage($id = 0)
     {
         $item = array();
-        $postUrl = '/item/add';
         if ($id) {
-            $item = (new ItemModel)->select($id);
-            $postUrl = '/item/update';
+            // 通过名称占位符传入参数
+            $item = (new ItemModel())->where(["id = :id"], [':id' => $id])->fetch();
         }
 
         $this->assign('title', '管理条目');
         $this->assign('item', $item);
-        $this->assign('postUrl', $postUrl);
         $this->render();
     }
     

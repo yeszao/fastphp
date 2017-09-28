@@ -14,7 +14,11 @@
     <?php foreach ($items as $item): ?>
         <tr>
             <td><?php echo $item['id'] ?></td>
-            <td><?php echo $item['item_name'] ?></td>
+            <td>
+                <a href="/item/detail/<?php echo $item['id'] ?>" title="查看详情">
+                    <?php echo $item['item_name'] ?>
+                </a>
+            </td>
             <td>
                 <a href="/item/manage/<?php echo $item['id'] ?>">编辑</a>
                 <a href="/item/delete/<?php echo $item['id'] ?>">删除</a>
