@@ -1,4 +1,8 @@
 <?php
+namespace fastphp\db;
+
+use PDO;
+use PDOException;
 
 /**
  * 数据库操作类。
