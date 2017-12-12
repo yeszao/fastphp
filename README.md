@@ -1,5 +1,7 @@
 # FastPHP
 
+[![Build Status](https://travis-ci.org/yeszao/fastphp.svg?branch=master)](https://travis-ci.org/yeszao/fastphp)
+
 ## 简述
 
 **fastphp**是一款简单的PHP MVC框架，目的是方便学习《手把手编写自己的PHP MVC框架》教程的同学下载源代码，详细介绍请参考网站：http://www.awaimai.com/128.html 。
