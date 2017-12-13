@@ -18,7 +18,7 @@
 
 ```
 project                 根目录
-├─application           应用目录
+├─app                   应用目录
 │  ├─controllers        控制器目录
 │  ├─models             模块目录
 │  ├─views              视图目录
