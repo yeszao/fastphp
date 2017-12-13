@@ -30,11 +30,16 @@ project                 根目录
 
 ## 使用
 
-### 1.克隆代码
-
+### 1.安装
+Github安装：
 ```
-git clone https://github.com/yeszao/fastphp.git
+git clone https://github.com/yeszao/fastphp.git project
 ```
+Composer安装：
+```
+composer create-project yeszao/fastphp project
+```
+这两个命令都会将代码安装到`project`目录，不指定就是默认的`fastphp`目录。
 
 ### 2. 创建数据库
 
