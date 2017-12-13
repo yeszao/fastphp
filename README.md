@@ -1,6 +1,10 @@
 # FastPHP
 
 [![Build Status](https://travis-ci.org/yeszao/fastphp.svg?branch=master)](https://travis-ci.org/yeszao/fastphp)
+[![Latest Stable Version](https://poser.pugx.org/yeszao/fastphp/v/stable)](https://packagist.org/packages/yeszao/fastphp)
+[![Total Downloads](https://poser.pugx.org/yeszao/fastphp/downloads)](https://packagist.org/packages/yeszao/fastphp)
+[![Latest Unstable Version](https://poser.pugx.org/yeszao/fastphp/v/unstable)](https://packagist.org/packages/yeszao/fastphp)
+[![License](https://poser.pugx.org/yeszao/fastphp/license)](https://packagist.org/packages/yeszao/fastphp)
 
 ## 简述
 
