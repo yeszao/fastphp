@@ -31,17 +31,19 @@ project                 根目录
 ## 使用
 
 ### 1.安装
-方法1：Composer安装（推荐）
+主要介绍通过composer和git两种安装方法，选择其一即可。
+
+**方法1**：Composer安装（推荐）
 ```
 composer create-project yeszao/fastphp project --no-dev
 ```
 其中，`--no-dev`表示不安装-dev依赖包（PHPUnit）。
 
-方法2：Github安装：
+**方法2**：Github安装：
 ```
 git clone https://github.com/yeszao/fastphp.git project
 ```
-> 说明：这两个命令都会将代码安装到`project`目录，不指定就是默认的`fastphp`目录。
+> 说明：这两个命令都会创建并将代码安装到`project`目录。
 
 ### 2. 创建数据库
 
