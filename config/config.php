@@ -1,7 +1,7 @@
 <?php
 
 // 数据库配置
-$config['db']['host'] = 'localhost';
+$config['db']['host'] = 'mysql';
 $config['db']['username'] = 'root';
 $config['db']['password'] = '123456';
 $config['db']['dbname'] = 'project';
