@@ -117,6 +117,14 @@ git reset --hard `版本号`
 ```
 git push --force
 ```
+#### 6. [使用git和github管理自己的项目---真实开发环境的策略](https://segmentfault.com/a/1190000003739324)
+
+b22a2d7d325e069b004f7ae262dd80c10129990a
+
+---
+
+## 入坑 Atom 编辑器
+### [Atom 备份神器 Sync-setttings 插件 ](https://blog.csdn.net/crper/article/details/47291063)
 
 
 ---
