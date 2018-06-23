@@ -3,6 +3,11 @@ namespace fastphp\db;
 
 use \PDOStatement;
 
+/**
+ * 数据库基类
+ * 核心类
+ * 创建 SQL 抽象层
+ */
 class Sql
 {
     // 数据库表名
@@ -20,9 +25,9 @@ class Sql
     /**
      * 查询条件拼接，使用方式：
      *
-     * $this->where(['id = 1','and title="Web"', ...])->fetch();
+     * $this->where(['id = 1','and title="Web"', ...])->select();
      * 为防止注入，建议通过$param方式传入参数：
-     * $this->where(['id = :id'], [':id' => $id])->fetch();
+     * $this->where(['id = :id'], [':id' => $id])->select();
      *
      * @param array $where 条件
      * @return $this 当前对象
@@ -42,7 +47,7 @@ class Sql
     /**
      * 拼装排序条件，使用方式：
      *
-     * $this->order(['id DESC', 'title ASC', ...])->fetch();
+     * $this->order(['id DESC', 'title ASC', ...])->select();
      *
      * @param array $order 排序条件
      * @return $this
@@ -58,7 +63,7 @@ class Sql
     }
 
     // 查询所有
-    public function fetchAll()
+    public function selectAll()
     {
         $sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
         $sth = Db::pdo()->prepare($sql);
@@ -69,7 +74,7 @@ class Sql
     }
 
     // 查询一条
-    public function fetch()
+    public function select()
     {
         $sql = sprintf("select * from `%s` %s", $this->table, $this->filter);
         $sth = Db::pdo()->prepare($sql);
@@ -91,7 +96,7 @@ class Sql
     }
 
     // 新增数据
-    public function add($data)
+    public function insert($data)
     {
         $sql = sprintf("insert into `%s` %s", $this->table, $this->formatInsert($data));
         $sth = Db::pdo()->prepare($sql);

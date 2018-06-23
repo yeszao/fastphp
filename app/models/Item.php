@@ -24,13 +24,16 @@ class Item extends Model
      * @param $title string 查询的关键词
      * @return array 返回的数据
      */
-    public function search($keyword)
-    {
-        $sql = "select * from `$this->table` where `item_name` like :keyword";
-        $sth = Db::pdo()->prepare($sql);
-        $sth = $this->formatParam($sth, [':keyword' => "%$keyword%"]);
-        $sth->execute();
+    // public function search($keyword)
+    // {
+    //     $sql = "select * from `$this->table` where `item_name` like :keyword";
+    //     // 生成一个“查询对象”
+    //     $sth = Db::pdo()->prepare($sql);
+    //     // 占位符绑定具体的变量值
+    //     // 如果SQL语句用冒号:占位符，那么$params应该为['a' => $a, 'b' => $b, 'c' => $c]
+    //     $sth = $this->formatParam($sth, [':keyword' => "%$keyword%"]);
+    //     $sth->execute();
 
-        return $sth->fetchAll();
-    }
+    //     return $sth->fetchAll();
+    // }
 }

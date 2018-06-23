@@ -1,0 +1,35 @@
+	<div class="container body-container">
+		<div class="alert alert-success">
+			<a href="#" class="close" data-dismiss="alert">&times;</a>
+			<strong><?php echo $successInfo ?>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="totalSecond">2</span>S后自动跳转╰(*°▽°*)╯
+			</strong>
+		</div>
+	</div>
+
+<script src="/static/js/success.js"></script>
+
+<script>
+	var second = document.getElementById('totalSecond').textContent;
+
+	if (navigator.appName.indexOf("Explorer") > -1)  {
+	    second = document.getElementById('totalSecond').innerText;
+	} else {
+	    second = document.getElementById('totalSecond').textContent;
+	}
+
+	setInterval("redirect()", 1000);
+	function redirect() {
+		if (second < 0) {
+		    location.href = '<?php echo $redirectUrl ?>';
+		} else {
+		    if (navigator.appName.indexOf("Explorer") > -1) {
+		        document.getElementById('totalSecond').innerText = second--;
+		    } else {
+		        document.getElementById('totalSecond').textContent = second--;
+		    }
+		}
+	}
+</script>
+

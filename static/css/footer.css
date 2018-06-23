@@ -1,0 +1,15 @@
+/**
+ * footer
+ */
+.footer-container {
+	margin-bottom: 0px;
+	padding-top: 10px;
+	padding-left: 40px;
+	color:#99c;
+	height: 15%;
+	width: 100%;
+	background-color: #eee;
+	font-size: 12px;
+	font-family:Sans-serif;
+}
+

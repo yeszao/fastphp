@@ -1,0 +1,504 @@
+    <!-- 引入自定义 css -->
+    <link rel="stylesheet" href="/static/css/schedule.css"  type="text/css">
+
+    <div class="container container-fluid body-container">
+
+        <!-- start: tabbable tabs 面板组件 -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active">
+                            <a href="#schedule-pane" role="tab" data-toggle="tab">日程</a>
+                        </li>
+                        <li class="">
+                            <a href="#tag-list-pane-1" role="tab" data-toggle="tab">标签列表1</a>
+                        </li>
+                        <li class="">
+                            <a href="#tag-list-pane-2" role="tab" data-toggle="tab">标签列表2</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <!-- start: 日程面板 -->
+                        <div class="tab-pane active" id="schedule-pane">
+                            <div class="container">
+                                <!-- start: 选择日期 -->
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-xs-8 col-xs-offset-1 col-sm-3  col-sm-offset-3">
+                                        <div class=" form-group input-group">
+                                            <span class="input-group-addon">日期</span>
+                                            <input type="date" id="belongDate" />
+                                        </div>
+
+                                    </div>
+
+                                    <div class="">
+                                        <button class="btn btn-success" id="selectDate" >确认</button>
+
+                                    </div>
+                                </div>
+                                <!-- end:   选择日期 -->
+
+                                <div class="row">
+                                    <!-- start: 日程表栏 -->
+                                    <div class="col-xs-8 col-sm-4 col-sm-offset-2">
+                                        <table class="table table-bordered table-condensed text-center" id="schedule-table">
+                                            <thead>
+                                                <tr>
+                                                    <td>小时</td>
+                                                    <td>15 分</td>
+                                                    <td>30 分</td>
+                                                    <td>45 分</td>
+                                                    <td>60 分</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>0</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-0-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-0-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-0-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-0-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-1-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-1-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-1-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-1-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-2-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-2-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-2-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-2-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-3-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-3-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-3-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-3-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-4-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-4-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-4-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-4-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-5-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-5-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-5-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-5-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-6-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-6-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-6-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-6-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-7-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-7-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-7-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-7-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-8-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-8-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-8-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-8-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>9</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-9-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-9-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-9-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-9-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                <td>10</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-10-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-10-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-10-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-10-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>11</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-11-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-11-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-11-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-11-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>12</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-12-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-12-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-12-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-12-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>13</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-13-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-13-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-13-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-13-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>14</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-14-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-14-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-14-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-14-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>15</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-15-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-15-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-15-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-15-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>16</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-16-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-16-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-16-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-16-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>17</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-17-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-17-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-17-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-17-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>18</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-18-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-18-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-18-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-18-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>19</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-19-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-19-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-19-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-19-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>20</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-20-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-20-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-20-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-20-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>21</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-21-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-21-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-21-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-21-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>22</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-22-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-22-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-22-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-22-4"></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>23</td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-23-1"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-23-2"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-23-3"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="quarter-block" id="block-23-4"></div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- end:   日程表栏 -->
+
+                                    <!-- start: 标签按钮列表栏 -->
+                                    <div class="col-xs-2 col-sm-offset-1">
+                                        <table class="table table-condensed text-center" id="tag-button-table">
+                                            <thead>
+                                                <tr>
+                                                    <td>标签</td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- end:   标签按钮列表栏 -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end:   日程面板 -->
+
+                        <!-- start: 标签列表面板1 -->
+                        <div class="tab-pane " id="tag-list-pane-1">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="alert alert-danger">DOM 加载表格展示</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="table table-striped table-condensed" id="tag-list-table-1">
+                                            <thead>
+                                                <tr>
+                                                    <td>id</td>
+                                                    <td>tag_name</td>
+                                                    <td>owner_id</td>
+                                                    <td>color</td>
+                                                    <td>管理</td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end:   标签列表面板1 -->
+
+                        <!-- start: 标签列表面板2 -->
+                        <div class="tab-pane " id="tag-list-pane-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="alert alert-danger">bootstrap table 加载表格展示</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="table table-striped table-condensed" id="tag-list-table-2">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end:   标签列表面板2 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- start: tabbable tabs 面板组件 -->
+
+
+
+        <!-- start: 调试信息 -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-info  alert-dismissable" id="debug-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            </div>
+        </div>
+        <!-- end:   调试信息 -->
+    </div>
+    <!-- end:   tabbable tabs -->
+
+    <!-- 若放在开头 则.selected 样式 需双击才能点选已经显示过的标签 -->
+    <!-- 加时间戳作为版本 解决js 文件修改后浏览器不能及时更新的问题 -->
+    <script src="/static/js/schedule.js?v={$Date}"></script>

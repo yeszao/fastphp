@@ -1,30 +1,9 @@
-html, body {
-    margin: 0;
-    padding: 10px;
-    font-size: 20px;
-}
+/**
+ * 面板
+ */
+.body-container {
+	/*width: 80%;*/
 
-input {
-    font-family:georgia,times;
-    font-size:24px;
-    line-height:1.2em;
+	/*设置主页面最小高度以保证 footer 总在底部*/
+	min-height: 75vh;
 }
-
-a {
-    color:blue;
-    font-family:georgia,times;
-    line-height:1.2em;
-    text-decoration:none;
-}
-
-a:hover {
-    text-decoration:underline;
-}
-
-h1 {
-    color:#000000;
-    font-size:41px;
-    border-bottom:1px dotted #cccccc;
-}
-
-td {padding: 1px 30px 1px 0;}

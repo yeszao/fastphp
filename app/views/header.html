@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title id="title">ReDay--日清周结月盘点</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- 	<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="0"> -->
+
+	<!-- Jquery 组件引用 -->
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<!-- bootstrap 组件引用 -->
+   	<!-- bootstraps3 不支持左侧横向选项卡 -->
+    <!-- <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/2.3.2/css/bootstrap.min.css"> -->
+    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+	<!-- bootstrap-table 组件引用 -->
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+
+	<!-- Zepto 额鹅鹅鹅 -->
+	<script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+
+	<!-- echarts 图表 -->
+	<!-- <script src="http://apps.bdimg.com/libs/echarts/2.1.9/dist/echarts.js"></script> -->
+
+	<!-- 自定义组件引用 -->
+	<link rel="stylesheet" href="/static/css/header.css"  type="text/css">
+	<link rel="stylesheet" href="/static/css/footer.css"  type="text/css">
+	<link rel="stylesheet" href="/static/css/main.css"  type="text/css">
+	<link rel="stylesheet" href="/static/css/login.css"  type="text/css">
+	<script src="/static/js/header.js"></script>
+
+</head>
+
+<body>
+	<!-- start: Header nav-->
+	  <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button"
+                        class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target="#navbar-content">
+                    <span  class="icon-bar"></span>
+                    <span  class="icon-bar"></span>
+                    <span  class="icon-bar"></span>
+                    <span  class="icon-bar"></span>
+                    <span  class="icon-bar"></span>
+                    <span  class="icon-bar"></span>
+                    <span  class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">日清周结月盘点</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-content">
+
+	  			<ul class="nav navbar-nav">
+	  				<li class="">
+	  					<a href="/schedule/index">日程</a>
+	  				</li>
+	  				<li class="">
+	  					<a href="/statistics/index">统计</a>
+	  				</li>
+	  				<li class="">
+	  					<a href="/batchadd/template">模板</a>
+	  				</li>
+	  				<li class="">
+	  					<a href="/wall/index">心情墙</a>
+	  				</li>
+	  				<li class="">
+	  					<a href="/account/login">登录</a>
+	  				</li>
+	  				<li class="">
+	  					<a href="/account/signup">注册</a>
+	  				</li>
+	  				<li class="">
+	  					<a href="/account/logout">注销</a>
+	  				</li>
+	  			</ul>
+
+            </div>
+        </div>
+    </nav>
+	<!-- end: 	Header nav-->
+
+	<!-- start: 提示信息模态框 -->
+    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-hidden="">
+        <div class="modal-dialog" style="z-index:2041;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">注意啦ヾ(@^▽^@)ノ </h4>
+                </div>
+                <!-- <div class="modal-body" style="width:150px; height:150px;"> -->
+                <div class="modal-body" style="">
+                    <div class="text-danger" id="error-modal-body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="javascript:window.location.reload(true);">刷新</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end:   提示信息模态框 -->
+

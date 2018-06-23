@@ -1,0 +1,140 @@
+    <!-- 引入自定义 js -->
+    <link rel="stylesheet" href="/static/css/statistics.css"  type="text/css">
+    <!-- 加时间戳作为版本 解决js 文件修改后浏览器不能及时更新的问题 -->
+    <script src="/static/js/statistics.js?v={$Date}"></script>
+
+    <div class="container container-fluid body-container">
+
+        <!-- start: tabbable tabs 面板组件 -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tabbable tabs-left">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="">
+                            <a href="#schedule-pane" role="tab" data-toggle="tab">啦啦啦</a>
+                        </li>
+                        <li class="active">
+                            <a href="#event-list-pane-1" role="tab" data-toggle="tab">事件</a>
+                        </li>
+                        <li class="">
+                            <a href="#event-list-pane-2" role="tab" data-toggle="tab">趋势</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <!-- start: 标签列表面板1 -->
+                        <div class="tab-pane active" id="event-list-pane-1">
+                            <div class="container">
+                                <!-- <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="alert alert-danger">DOM 加载表格展示</div>
+                                    </div>
+                                </div> -->
+                                <!-- start: 选择日期 -->
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-xs-8 col-xs-offset-1 col-sm-3  col-sm-offset-3">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">开始日期</span>
+                                            <input type="date" id="startDate" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-offset-1 col-sm-3  col-sm-offset-3">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">结束日期</span>
+                                            <input type="date" id="endDate" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-success" id="selectEvent" >查询</button>
+                                    </div>
+                                    </div>
+                                <!-- end:   选择日期 -->
+
+                                <!-- start: 事件统计表 -->
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+                                        <table class="table table-striped table-bordered table-hover table-condensed text-center" id="event-list-table-1">
+                                            <thead>
+                                                <tr>
+                                                    <td>事件</td>
+                                                    <td>共计/时</td>
+                                                    <td>天数</td>
+                                                    <td>平均/天/时</td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end:   事件统计表 -->
+
+                                <!-- start: 饼图 -->
+                                 <div class="row">
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div id="first" ></div>
+                                    </div>
+                                </div>
+                                <!-- end:   饼图 -->
+
+                            </div>
+                        </div>
+                        <!-- end:   标签列表面板1 -->
+
+                        <!-- start: 标签列表面板2 -->
+                        <div class="tab-pane " id="event-list-pane-2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="alert alert-danger">bootstrap table 加载表格展示</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <table class="table table-striped table-condensed" id="event-list-table-2">
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end:   标签列表面板2 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- start: tabbable tabs 面板组件 -->
+
+
+
+        <!-- start: 调试信息 -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-info  alert-dismissable" id="debug-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            </div>
+        </div>
+        <!-- end:   调试信息 -->
+    </div>
+    <!-- end:   tabbable tabs -->
+
+    <!-- start: 提示信息模态框 -->
+    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-hidden="">
+        <div class="modal-dialog" style="z-index:2041;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">注意啦ヾ(@^▽^@)ノ </h4>
+                </div>
+                <!-- <div class="modal-body" style="width:150px; height:150px;"> -->
+                <div class="modal-body" style="">
+                    <div class="text-danger" id="error-modal-body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <!-- end:   提示信息模态框 -->
