@@ -128,7 +128,7 @@ git push --force
 ---
 
 ## 入坑 Atom 编辑器
-### [Atom 备份神器 Sync-setttings 插件 ](https://blog.csdn.net/crper/article/details/47291063)
+### [Atom 备份神器 —— Sync Settings 教程](https://www.cnblogs.com/hooray/p/5885211.html)
     Personal access tokens : b22a2d7d325e069b004f7ae262dd80c10129990a
     Gist Id : 4bed82817c679576258683eb7d70cb6a
     Gist 库[已被墙]: https://gist.github.com/FaceShawn/4bed82817c679576258683eb7d70cb6a
