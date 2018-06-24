@@ -72,11 +72,9 @@ class Statistics extends Account
         if( empty($this->response['eventList']) ) {
             $this->echoJsonMsg(400, EVENT_LIST_IS_NULL, '/');
         } else {
-
+            // 成功获取事件列表
+            $this->echoJsonMsg(200, GET_EVENT_LIST_SUCCESS, '/');
         }
-
-        // 成功获取事件列表
-        $this->echoJsonMsg(200, GET_EVENT_LIST_SUCCESS, '/');
     }
 
 
