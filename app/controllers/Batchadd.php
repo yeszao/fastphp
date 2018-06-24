@@ -44,7 +44,7 @@ class Batchadd extends Account
      * @return $this->response['blockList'] 块列表：块代号，颜色，标签名字
      * @return $this->response['tagList'] 标签列表：编号，名字，颜色
      */
-    public function getBlockAndTag()
+    public function acceptBlockAndTag()
     {
         // 验证用户是否已登录
         if( $this->isLogin() ){
@@ -276,4 +276,3 @@ class Batchadd extends Account
     }
 
 }
-

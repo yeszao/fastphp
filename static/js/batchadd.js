@@ -12,7 +12,7 @@ window.onload = function(){
     initStartAndEndDate();
 
     // 初始化块和标签数据
-    getBlockAndTag();
+    acceptBlockAndTag();
 
     // 查询块列表
     $("#applyTemplate").click(function () {
@@ -47,7 +47,7 @@ function initStartAndEndDate() {
 /**
  * 获取块和标签 json 数据
  */
-function getBlockAndTag(){
+function acceptBlockAndTag(){
 
     var data = {};
 
@@ -56,7 +56,7 @@ function getBlockAndTag(){
 
     $.ajax({
         type: "POST",
-        url: "/batchadd/getBlockAndTag",
+        url: "/batchadd/acceptBlockAndTag",
         // contentType: "application/json;charset=utf-8",    //发送数据类型
         data: data,  //提交到后台的数据
         dataType: "json",   //回调函数接收数据的数据格式
@@ -83,7 +83,7 @@ function getBlockAndTag(){
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("getBlockAndTag() 错误！"
+            alert("acceptBlockAndTag() 错误！"
                 + "\ntextStatus = " + textStatus
                 + "\n错误原因： " + errorThrown);
         },
@@ -124,7 +124,7 @@ function sendItem(tagId){
             // 状态码
             if(status == 200){
                 // 添加成功,刷新当前页面
-                getBlockAndTag();
+                acceptBlockAndTag();
             }else{
                 // 模态框显示状态码和提示信息
                 showInfoModal("状态码："+ status +"<br><br>提示信息："+ info);
