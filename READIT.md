@@ -63,9 +63,10 @@ DocumentRoot "c:/wamp/www/dwm/"
 ### 1. Git 入门知识
 #### 1. [廖雪峰--史上最浅显易懂的Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 #### 2. [Git入门指南使用资料汇总及文章推荐](https://github.com/xirong/my-git/blob/master/ixirong.com.md)
-#### 3. [Git分支管理策略](http://www.ruanyifeng.com/blog/2012/07/git.html)
-#### 4. [介绍一个成功的 Git 分支模型](https://www.oschina.net/translate/a-successful-git-branching-model)
-#### 5. [使用git时出现：warning: LF will be replaced by CRLF](https://www.jianshu.com/p/0acf732eab68)
+#### 3. 分支管理策略
+- [x] [Git分支管理策略](http://www.ruanyifeng.com/blog/2012/07/git.html)
+- [ ] [介绍一个成功的 Git 分支模型](https://www.oschina.net/translate/a-successful-git-branching-model)
+#### 4. [使用git时出现：warning: LF will be replaced by CRLF](https://www.jianshu.com/p/0acf732eab68)
 
 ### 2. 使用 Github 客户端进行版本控制
 #### 1. [Github 的 SSH 配置](https://blog.csdn.net/chenliguan/article/details/51072809)
@@ -92,7 +93,7 @@ DocumentRoot "c:/wamp/www/dwm/"
     2. Git Bash 客户端通过 cd 命令
     3. 在 GitHub Desktop 中 `Ctrl + \` ` 在命令提示符中
 ##### 3. 回退
-```
+``` {.liner-numbers}
 # 回退所有内容到上一个版本，省略文件名表示回退所有
 git reset HEAD^ `文件名`
 
@@ -117,7 +118,7 @@ git reset --hard `版本号`
 ```
 git push --force
 ```
-#### 6. [使用git和github管理自己的项目---真实开发环境的策略](https://segmentfault.com/a/1190000003739324)
+#### 6. [使用 git 和 github 管理自己的项目---真实开发环境的策略](https://segmentfault.com/a/1190000003739324)
 
 
 
@@ -126,6 +127,7 @@ git push --force
 ## 入坑 Atom 编辑器
 ### [Atom 备份神器 Sync-setttings 插件 ](https://blog.csdn.net/crper/article/details/47291063)
 ### [自建 shadowsocks 服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)，建立 gist 仓库存储 sync 备份的 .atom 配置文件
+### [markdown-preview-enhanced 文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/)
 
 
 ---
