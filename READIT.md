@@ -129,6 +129,9 @@ git push --force
 
 ## 入坑 Atom 编辑器
 ### [Atom 备份神器 Sync-setttings 插件 ](https://blog.csdn.net/crper/article/details/47291063)
+    Personal access tokens : b22a2d7d325e069b004f7ae262dd80c10129990a
+    Gist Id : 4bed82817c679576258683eb7d70cb6a
+    Gist 库[已被墙]: https://gist.github.com/FaceShawn/4bed82817c679576258683eb7d70cb6a
 ### [自建 shadowsocks 服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)，建立 gist 仓库存储 sync 备份的 .atom 配置文件
 ### [markdown-preview-enhanced 文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/)
 
