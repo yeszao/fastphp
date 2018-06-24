@@ -9,10 +9,10 @@
 	/**
 	 * 用户登录
 	 */
-	define('USER_IS_NOT_REGISTERED', '用户未注册，请先注册');
-	define('PASSWORD_IS_ERROR', '密码错误，请重新输入密码');
 	define('EMAIL_IS_NULL', '邮箱不能为空');
 	define('PASSWORD_IS_NULL', '密码不能为空');
+    define('PASSWORD_IS_ERROR', '密码错误，请重新输入密码');
+   define('USER_IS_NOT_REGISTERED', '用户未注册，请先注册');
 	define('USER_IS_NOT_LOGIN', '用户未登录，请前往登录');
 	define('USER_IS_ALREADY_LOGIN', '用户已登录，请勿重复登录');
 	define('LOGIN_SUCCESS', '登录成功');	// 登录成功
@@ -47,22 +47,25 @@
 	define('BELONG_DATE_IS_NULL', '请先选择日期 o(*￣︶￣*)o');
 	define('TAG_ID_IS_NULL', '请先选择标签 o(*￣︶￣*)o');
 	define('BLOCK_CODE_ARRAY_IS_NULL', '请先选择时间块 o(*￣︶￣*)o');
-	define('ADD_ITEM_SUCCESS', '成功添加事项 (*^▽^*)');
-	define('ADD_ITEM_FAILED', '添加事项失败');
 	define('USER_TAG_LIST_IS_NULL', '该用户尚未添加标签');
 	define('USER_BLOCK_LIST_IS_NULL', '该用户尚未添加时间块');
 	define('GET_BLOCK_AND_TAG_SUCCESS', '获取块和标签信息成功');
+	define('ADD_ITEM_SUCCESS', '成功添加事项 (*^▽^*)');
+	define('ADD_ITEM_FAILED', '添加事项失败');
 
 
 	/**
 	 * 模板
 	 */
-	define('ADD_TEMPLATE_SUCCESS', '成功添加模板 (*^▽^*)');
-	define('ADD_TEMPLATE_FAILED', '添加模板失败');
 	define('START_DATE_IS_NULL', '请先选择开始日期 o(*￣︶￣*)o');
 	define('END_DATE_IS_NULL', '请先选择结束日期 o(*￣︶￣*)o');
 	define('EVENT_LIST_IS_NULL', '事件列表为空 o(*￣︶￣*)o');
+	define('TEMPLATE_IS_NULL', '模板为空，请先选择事项o(*￣︶￣*)o');
 	define('GET_EVENT_LIST_SUCCESS', '获取事件列表成功 o(*￣︶￣*)o');
+	define('ADD_TEMPLATE_SUCCESS', '成功添加模板 (*^▽^*)');
+	define('ADD_TEMPLATE_FAILED', '添加模板失败');
+	define('APPLY_TEMPLATE_SUCCESS', '应用模板成功 (*^▽^*)');
+	define('APPLY_TEMPLATE_FAILED', '应用模板失败');
 
 
 	// /**

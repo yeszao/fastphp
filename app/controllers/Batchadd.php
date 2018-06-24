@@ -47,40 +47,143 @@ class Batchadd extends Account
     public function acceptBlockAndTag()
     {
         // 验证用户是否已登录
-        if( $this->isLogin() ){
-
-            // 获取块信息
-            $this->getTemplateBlockList();
-
-            // 获取标签信息
-            $this->getTagList();
-
-            // 判断该用户的标签列表是否为空
-            if( !empty($this->response['tagList']) ) {
-                if( !empty($this->response['blockList']) ) {
-                    $this->response['status'] = 200;
-                    $this->response['info'] = GET_BLOCK_AND_TAG_SUCCESS;
-                } else {
-                    $this->response['status'] = 200;
-                    $this->response['info'] = USER_BLOCK_LIST_IS_NULL;
-                }
-            } else {
-                $this->response['status'] = 400;
-                $this->response['info'] = USER_TAG_LIST_IS_NULL;
-            }
-        } else {
-            $this->response['status'] = 400;
-            $this->response['info'] = USER_IS_NOT_LOGIN;
+        if( !$this->isLogin() ) {
+            $this->echoJsonMsg(400, USER_IS_NOT_LOGIN, '/account/login');
         }
-        // 返回 json 数据
-        echo json_encode( $this->response, JSON_UNESCAPED_UNICODE);
+
+        // 接收数据
+        // if( !empty($_POST['belongDate']) ) {
+        //     $this->belongDate = $_POST['belongDate'];
+        // } else {
+        //     $this->echoJsonMsg(400, BELONG_DATE_IS_NULL, '/');
+        // }
+
+        // 获取标签信息
+        $this->response['tagList'] = $this->getTagList();
+        // 判断标签列表是否为空
+        if( empty($this->response['tagList']) ) {
+            $this->echoJsonMsg(400, USER_TAG_LIST_IS_NULL, '/label/add');
+        }
+
+        // 获取块信息
+        $this->response['blockList'] = $this->getTemplateBlockList();
+        // 判断块列表是否为空
+        if( empty($this->response['blockList']) ) {
+            $this->echoJsonMsg(200, USER_BLOCK_LIST_IS_NULL, '/');
+        }
+
+        // 成功获取块和标签列表
+        $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '/');
     }
 
 
     /**
-     * 获取块信息
+     * 提交模板
+     * @param $_POST['tagId'] 标签编号
+     * @param $_POST['blockCodeArray'] 块号数组
+     *
+     * @return $this->response['status'] 状态码
+     * @return $this->response['info'] 提示信息
+     * @return $this->response['url'] 跳转链接
+     */
+    public function sendTemplate()
+    {
+        // 验证用户是否已登录
+        if( !$this->isLogin() ) {
+            $this->echoJsonMsg(400, USER_IS_NOT_LOGIN, '/account/login');
+        }
+
+        // 接收数据
+        if( !empty($_POST['tagId']) ) {
+            $this->tagId = $_POST['tagId'];
+        } else {
+            $this->echoJsonMsg(400, TAG_ID_IS_NULL, '/label/add');
+        }
+
+        // 接收数据
+        // if( !empty($_POST['belongDate']) ) {
+        //     $this->belongDate = $_POST['belongDate'];
+        // } else {
+        //     $this->echoJsonMsg(400, BELONG_DATE_IS_NULL, '/');
+        // }
+
+        // 接收数据
+        if( !empty($_POST['blockCodeArray']) ) {
+            $this->blockCodeArray = $_POST['blockCodeArray'];
+        } else {
+            $this->echoJsonMsg(400, BLOCK_CODE_ARRAY_IS_NULL, '/');
+        }
+
+        // 设置模板
+        if( $this->setTemplate() ) {
+            $this->echoJsonMsg(200, ADD_TEMPLATE_SUCCESS, '/');
+        } else {
+            $this->echoJsonMsg(400, ADD_TEMPLATE_FAILED, '/');
+        }
+    }
+
+
+    /**
+     * 应用模板
+     * @param $_POST['startDate'] 开始日期
+     * @param $_POST['endTime'] 结束日期
+     *
+     * @return $this->response['status'] 状态码
+     * @return $this->response['info'] 提示信息
+     */
+    public function applyTemplate()
+    {
+        // 验证用户是否已登录
+        if( !$this->isLogin() ) {
+            $this->echoJsonMsg(400, USER_IS_NOT_LOGIN, '/account/login');
+        }
+
+        // 接收数据
+        if( !empty($_POST['startDate']) ) {
+            $this->startDate = $_POST['startDate'];
+        } else {
+            $this->echoJsonMsg(400, START_DATE_IS_NULL, '/');
+        }
+
+        // 接收数据
+        if( !empty($_POST['endDate']) ) {
+            $this->endDate = $_POST['endDate'];
+        } else {
+            $this->echoJsonMsg(400, END_DATE_IS_NULL, '/');
+        }
+
+        // 应用模板
+        if( $this->setItem() ) {
+            $this->echoJsonMsg(200, APPLY_TEMPLATE_SUCCESS, '/');
+        } else {
+            $this->echoJsonMsg(400, APPLY_TEMPLATE_FAILED, '/');
+        }
+    }
+
+
+    /**
+     * 获取标签列表
+     *
+     * @param $this->getUserId() 用户编号
+     *
+     * @return $tagList 该用户添加的所有标签列表
+     */
+    private function getTagList()
+    {
+        $this->tagList = (new Tag())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
+        return $this->tagList;
+    }
+
+
+    /**
+     * 获取模板块信息
+     *
      * @param $this->getUserId() 当前用户编号
-     * @return $this->response['blockList'] 块列表：块代号，颜色，标签名字
+     *
+     * @return $blockList 块列表，包括：
+     * @return $blockList['block_code'] 块代号
+     * @return $blockList['block_text'] 块文本
+     * @return $blockList['block_color'] 块颜色
      */
     private function getTemplateBlockList()
     {
@@ -109,65 +212,7 @@ class Batchadd extends Account
             array_push($blockList, $block);
         }
         // 块信息列表
-        $this->response['blockList'] = $blockList;
-    }
-
-
-    /**
-     * 获取标签列表
-     * @param $this->getUserId() 用户编号
-     * @return $this->response['tagList'] 该用户添加的所有标签列表
-     */
-    private function getTagList()
-    {
-        $this->tagList = (new Tag())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
-        $this->response['tagList'] = $this->tagList;
-    }
-
-
-    /**
-     * 提交事项
-     * @param $_POST['tagId'] 标签编号
-     * @param $_POST['blockCodeArray'] 块号数组
-     *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     */
-    public function sendTemplate()
-    {
-        // 验证用户是否已登录
-        if( $this->isLogin() ){
-
-            // 接收数据
-            $this->tagId = isset($_POST['tagId']) ? $_POST['tagId'] : '';
-            $this->blockCodeArray = isset($_POST['blockCodeArray']) ? $_POST['blockCodeArray'] : '';
-
-            if( !empty($this->tagId) ) {
-                if( !empty($this->blockCodeArray) ) {
-
-                    // 设置模板
-                    if( $this->setTemplate() ) {
-                        $this->response['status'] = 200;
-                        $this->response['info'] = ADD_TEMPLATE_SUCCESS;
-                    } else {
-                        $this->response['status'] = 400;
-                        $this->response['info'] = ADD_TEMPLATE_FAILED;
-                    }
-                } else {
-                    $this->response['status'] = 400;
-                    $this->response['info'] = BLOCK_CODE_ARRAY_IS_NULL;
-                }
-            } else {
-                $this->response['status'] = 400;
-                $this->response['info'] = TAG_ID_IS_NULL;
-            }
-        }else{
-            $this->response['status'] = 400;
-            $this->response['info'] = USER_IS_NOT_LOGIN;
-            // $this->success(USER_IS_NOT_LOGIN, '/account/login');
-        }
-        // 返回状态码和提示信息
-        echo json_encode( $this->response, JSON_UNESCAPED_UNICODE);
+        return $blockList;
     }
 
 
@@ -199,80 +244,47 @@ class Batchadd extends Account
 
     /**
      * 应用模板
-     * @param $_POST['startDate'] 开始日期
-     * @param $_POST['endTime'] 结束日期
-     *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     */
-    public function applyTemplate()
-    {
-        // 验证用户是否已登录
-        if( $this->isLogin() ){
-
-            // 接收数据
-            $this->startDate = isset($_POST['startDate']) ? $_POST['startDate'] : '';
-            $this->endDate = isset($_POST['endDate']) ? $_POST['endDate'] : '';
-
-            // 设置事项
-            $this->setItem();
-
-        }else{
-            $this->response['status'] = 400;
-            $this->response['info'] = USER_IS_NOT_LOGIN;
-            // $this->success(USER_IS_NOT_LOGIN, '/account/login');
-        }
-        // 返回状态码和提示信息
-        echo json_encode( $this->response, JSON_UNESCAPED_UNICODE);
-    }
-
-
-    /**
-     * 设置事项
      *
      * @param $this->tagId 标签名
      * @param $this->getUserId() 当前用户编号
      * @param $this->startDate 开始日期
      * @param $this->endDate 结束日期
+     *
+     * @return boolean 插入是否成功
      */
     private function setItem() {
 
-        // 获取 模板 里块的信息
+        // 获取模板里块的信息
         $template = (new Template())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
 
         if( empty($template) ) {
-            $this->response['status'] = 400;
-            $this->response['info'] = "模板为空，请先选择事项o(*￣︶￣*)o";
-        } else {
-            // 天数
-            $dataLength = ( strtotime($this->endDate) - strtotime($this->startDate) ) / 86400 + 1;
-            // $dataLength = 7;
-
-            // 写入事项
-            $item = new Item();
-            for ($i=0; $i < count($template); $i++) {
-                // 按照天数循环
-                for ($j=0; $j < $dataLength; $j++) {
-                    // 计算所属时间
-                    $belongTimestamp = strtotime($this->startDate) + 24*60*60*($j);
-                    $belongDate = date("Y-m-d", $belongTimestamp );
-                    // 组装事项
-                    $data =['tag_id' => $template[$i]['tag_id'],
-                            'owner_id' => $this->getUserId(),
-                            'belong_date' => $belongDate,
-                            'block_code' => $template[$i]['block_code']
-                        ];
-                    $item->insert($data);
-                }
-            }
-            $this->response['startDate'] = $this->startDate;
-            $this->response['endDate'] = $this->endDate;
-            $this->response['dataLength'] = $dataLength;
-            $this->response['template'] = $template;
-            $this->response['status'] = 200;
-            $this->response['info'] = ADD_ITEM_SUCCESS;
+            $this->echoJsonMsg(400, TEMPLATE_IS_NULL, '/');
         }
 
-    }
+        // 天数
+        $dataLength = ( strtotime($this->endDate) - strtotime($this->startDate) ) / 86400 + 1;
+        // $dataLength = 7;
 
+        // 写入事项
+        $item = new Item();
+        for ($i=0; $i < count($template); $i++) {
+            // 按照天数循环
+            for ($j=0; $j < $dataLength; $j++) {
+                // 计算所属时间
+                $belongTimestamp = strtotime($this->startDate) + 24*60*60*($j);
+                $belongDate = date("Y-m-d", $belongTimestamp );
+                // 组装事项
+                $data =['tag_id' => $template[$i]['tag_id'],
+                        'owner_id' => $this->getUserId(),
+                        'belong_date' => $belongDate,
+                        'block_code' => $template[$i]['block_code']
+                    ];
+                // 插入失败
+                if( $item->insert($data) == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

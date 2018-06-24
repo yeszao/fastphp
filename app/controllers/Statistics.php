@@ -71,6 +71,8 @@ class Statistics extends Account
         // 判断事件列表是否为空
         if( empty($this->response['eventList']) ) {
             $this->echoJsonMsg(400, EVENT_LIST_IS_NULL, '/');
+        } else {
+
         }
 
         // 成功获取事件列表

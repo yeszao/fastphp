@@ -129,6 +129,20 @@ class Schedule extends Account
 
 
     /**
+     * 获取标签列表
+     *
+     * @param $this->getUserId() 用户编号
+     *
+     * @return $tagList 该用户添加的所有标签列表
+     */
+    private function getTagList()
+    {
+        $this->tagList = (new Tag())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
+        return $this->tagList;
+    }
+
+    
+    /**
      * 获取块信息
      *
      * @param $this->getUserId() 当前用户编号
@@ -167,20 +181,6 @@ class Schedule extends Account
         }
         // 块信息列表
         return $blockList;
-    }
-
-
-    /**
-     * 获取标签列表
-     *
-     * @param $this->getUserId() 用户编号
-     *
-     * @return $tagList 该用户添加的所有标签列表
-     */
-    private function getTagList()
-    {
-        $this->tagList = (new Tag())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
-        return $this->tagList;
     }
 
 
