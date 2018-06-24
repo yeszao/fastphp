@@ -22,7 +22,7 @@ class Batchadd extends Account
     // 块代号数组
     protected $blockCodeArray = Array();
     // 响应信息
-    protected $response = Array();
+    protected $msg = Array();
 
 
     /**
@@ -39,10 +39,10 @@ class Batchadd extends Account
      * 获取块和标签信息
      *
      * @param $this->getUserId() 当前用户编号
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     * @return $this->response['blockList'] 块列表：块代号，颜色，标签名字
-     * @return $this->response['tagList'] 标签列表：编号，名字，颜色
+     * @return $this->msg['status'] 状态码
+     * @return $this->msg['info'] 提示信息
+     * @return $this->msg['blockList'] 块列表：块代号，颜色，标签名字
+     * @return $this->msg['tagList'] 标签列表：编号，名字，颜色
      */
     public function acceptBlockAndTag()
     {
@@ -59,21 +59,21 @@ class Batchadd extends Account
         // }
 
         // 获取标签信息
-        $this->response['tagList'] = $this->getTagList();
+        $this->msg['tagList'] = $this->getTagList();
         // 判断标签列表是否为空
-        if( empty($this->response['tagList']) ) {
+        if( empty($this->msg['tagList']) ) {
             $this->echoJsonMsg(400, USER_TAG_LIST_IS_NULL, '/label/add');
         }
 
         // 获取块信息
-        $this->response['blockList'] = $this->getTemplateBlockList();
+        $this->msg['blockList'] = $this->getTemplateBlockList();
         // 判断块列表是否为空
-        if( empty($this->response['blockList']) ) {
-            $this->echoJsonMsg(200, USER_BLOCK_LIST_IS_NULL, '/');
+        if( empty($this->msg['blockList']) ) {
+            $this->echoJsonMsg(200, USER_BLOCK_LIST_IS_NULL, '#');
+        } else {
+            // 成功获取块和标签列表
+            $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '#');
         }
-
-        // 成功获取块和标签列表
-        $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '/');
     }
 
 
@@ -82,9 +82,9 @@ class Batchadd extends Account
      * @param $_POST['tagId'] 标签编号
      * @param $_POST['blockCodeArray'] 块号数组
      *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     * @return $this->response['url'] 跳转链接
+     * @return $this->msg['status'] 状态码
+     * @return $this->msg['info'] 提示信息
+     * @return $this->msg['url'] 跳转链接
      */
     public function sendTemplate()
     {
@@ -111,14 +111,14 @@ class Batchadd extends Account
         if( !empty($_POST['blockCodeArray']) ) {
             $this->blockCodeArray = $_POST['blockCodeArray'];
         } else {
-            $this->echoJsonMsg(400, BLOCK_CODE_ARRAY_IS_NULL, '/');
+            $this->echoJsonMsg(400, BLOCK_CODE_ARRAY_IS_NULL, '#');
         }
 
         // 设置模板
         if( $this->setTemplate() ) {
-            $this->echoJsonMsg(200, ADD_TEMPLATE_SUCCESS, '/');
+            $this->echoJsonMsg(200, ADD_TEMPLATE_SUCCESS, '#');
         } else {
-            $this->echoJsonMsg(400, ADD_TEMPLATE_FAILED, '/');
+            $this->echoJsonMsg(400, ADD_TEMPLATE_FAILED, '#');
         }
     }
 
@@ -128,8 +128,8 @@ class Batchadd extends Account
      * @param $_POST['startDate'] 开始日期
      * @param $_POST['endTime'] 结束日期
      *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
+     * @return $this->msg['status'] 状态码
+     * @return $this->msg['info'] 提示信息
      */
     public function applyTemplate()
     {
@@ -142,21 +142,21 @@ class Batchadd extends Account
         if( !empty($_POST['startDate']) ) {
             $this->startDate = $_POST['startDate'];
         } else {
-            $this->echoJsonMsg(400, START_DATE_IS_NULL, '/');
+            $this->echoJsonMsg(400, START_DATE_IS_NULL, '#');
         }
 
         // 接收数据
         if( !empty($_POST['endDate']) ) {
             $this->endDate = $_POST['endDate'];
         } else {
-            $this->echoJsonMsg(400, END_DATE_IS_NULL, '/');
+            $this->echoJsonMsg(400, END_DATE_IS_NULL, '#');
         }
 
         // 应用模板
         if( $this->setItem() ) {
-            $this->echoJsonMsg(200, APPLY_TEMPLATE_SUCCESS, '/');
+            $this->echoJsonMsg(200, APPLY_TEMPLATE_SUCCESS, '/schedule/index');
         } else {
-            $this->echoJsonMsg(400, APPLY_TEMPLATE_FAILED, '/');
+            $this->echoJsonMsg(400, APPLY_TEMPLATE_FAILED, '#');
         }
     }
 

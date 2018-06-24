@@ -8,6 +8,8 @@ class Account extends Controller
 {
     // 登录后的用户
     public $user;
+    // 响应信息
+    protected $msg = Array();
 
 
     /**
@@ -192,14 +194,17 @@ class Account extends Controller
      * @param $status 状态码
      * @param $info 提示信息
      * @param $url 跳转链接
-     * @return response 并终止程序
+     * @return msg 并终止程序
      */
-    protected function echoJsonMsg($status = 100, $info = INFO_IS_UNDEFINED, $url = '/') {
+    protected function echoJsonMsg($status = 100, $info = INFO_IS_UNDEFINED, $url = '#') {
+
         // $this->success(USER_IS_NOT_LOGIN, '/account/login');
-        $this->response['status'] = $status;
-        $this->response['info'] = $info;
+        $this->msg['status'] = $status;
+        $this->msg['info'] = $info;
+        $this->msg['url'] = $url;
+
         // 禁止中文编码转义
-        echo json_encode( $this->response, JSON_UNESCAPED_UNICODE);
+        echo json_encode( $this->msg, JSON_UNESCAPED_UNICODE);
         die();
     }
 

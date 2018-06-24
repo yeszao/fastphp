@@ -14,7 +14,7 @@ window.onload = function(){
     $("#selectEvent").click(function () {
         acceptEventList();
     });
-}
+};
 
 
 
@@ -48,8 +48,8 @@ function acceptEventList(){
 
     // 获取开始日期，默认当前日期前一周
     var data = {};
-    data['startDate'] = $("#startDate").val();
-    data['endDate'] = $("#endDate").val();
+    data.startDate = $("#startDate").val();
+    data.endDate = $("#endDate").val();
 
     // 测试信息展示
     $('#debug-info').append("发送查询数据：" + JSON.stringify(data) + "<br></br>");
@@ -58,56 +58,30 @@ function acceptEventList(){
         type: "POST",
         url: "/statistics/acceptEventList",
         cache : false,    //禁用缓存
-        // contentType: "application/json;charset=utf-8",    //发送数据类型
         data: data,  //提交到后台的数据
         dataType: "json",   //回调函数接收数据的数据格式
-        success: function(response){
-            // 测试信息展示
-            $('#debug-info').append("返回事件数据：" + JSON.stringify(response) + "<br></br>");
+        success: function(msg){
 
-            var status = response['status'];    //状态码
-            var info = response['info'];  //提示信息
+            // 测试信息展示
+            $('#debug-info').append("返回事件数据：" + JSON.stringify(msg) + "<br></br>");
 
             // 状态码，获取事件成功
-            if(status == 200){
+            if(msg.status == 200){
 
-                var eventList = response['eventList'];
                 // DOM 展示事件列表
-                showEventList_DOM(eventList);
+                showEventList_DOM(msg.eventList);
 
                 // bootstrap table  展示事件列表
                 // showEventList_bootstrap(eventList);
 
-            } else {
-                // 模态框显示状态码和提示信息
-                showInfoModal("状态码："+ status +"<br><br>提示信息："+ info);
+            }else{
+                // 模态框显示状态码、提示信息、跳转链接
+                showInfoModal( msg.status, msg.info, msg.url);
             }
         },
-       //  success: function(result) {
-       //      var names=[];//定义两个数组
-       //      var nums=[];
-       //      $.each(result,function(key,values){ //此处我返回的是list<String,map<String,String>>循环map
-       //          names.push(values.province_name);
-       //          var obj = new Object();
-       //          obj.name = values.province_name;
-       //          obj.value = values.count;
-       //          nums.push(obj);
-       //      });
-       //      myChart.setOption({ //加载数据图表
-       //          legend: {
-       //              data: names
-       //          },
-       //          series: {
-       //              // 根据名字对应到相应的系列
-       //              name: ['数量'],
-       //              data: nums
-       //          }
-       //      });
-       // },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("acceptEventList() 错误！"
-                + "\ntextStatus = " + textStatus
-                + "\n错误原因： " + errorThrown);
+            // 模态框显示状态码、提示信息、跳转链接
+            showInfoModal( '404', 'ajax 请求错误！', '#');
         },
     });
 }
@@ -118,9 +92,6 @@ function acceptEventList(){
  */
 function showPieChart() {
     //饼图模板
-
-
-
 
 }
 
@@ -161,7 +132,7 @@ function showEventList_DOM(objList)
 function showEventList_bootstrap(objList)
 {
     $('#event-list-table-2').bootstrapTable({
-        // url 返回的是 response 对象，不是 eventList 对象数组
+        // url 返回的是 msg 对象，不是 eventList 对象数组
         url: '/statistics/acceptEventList',
         columns: [{
             field: 'statebox',

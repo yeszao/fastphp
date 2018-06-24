@@ -18,10 +18,10 @@ class Statistics extends Account
     protected $endDate;
     // 所有标签列表
     protected $tagList = Array();
-    // 块代号数组
-    protected $blockCodeArray = Array();
+    // 事件列表
+    protected $eventList = Array();
     // 响应信息
-    protected $response = Array();
+    protected $msg = Array();
 
 
     /**
@@ -40,10 +40,10 @@ class Statistics extends Account
      * @param $_POST['belongDate'] 前端传来的所属日期
      * @param $this->getUserId() 当前用户编号
      *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     * @return $this->response['url'] 跳转链接
-     * @return $this->response['eventList'] 事件列表
+     * @return $this->msg['status'] 状态码
+     * @return $this->msg['info'] 提示信息
+     * @return $this->msg['url'] 跳转链接
+     * @return $this->msg['eventList'] 事件列表
      */
     public function acceptEventList()
     {
@@ -56,24 +56,24 @@ class Statistics extends Account
         if( !empty($_POST['startDate']) ) {
             $this->startDate = $_POST['startDate'];
         } else {
-            $this->echoJsonMsg(400, START_DATE_IS_NULL, '/');
+            $this->echoJsonMsg(400, START_DATE_IS_NULL, '#');
         }
 
         // 接收数据
         if( !empty($_POST['endDate']) ) {
             $this->endDate = $_POST['endDate'];
         } else {
-            $this->echoJsonMsg(400, END_DATE_IS_NULL, '/');
+            $this->echoJsonMsg(400, END_DATE_IS_NULL, '#');
         }
 
         // 获取事件信息
-        $this->response['eventList'] = $this->makeEventList();
+        $this->msg['eventList'] = $this->makeEventList();
         // 判断事件列表是否为空
-        if( empty($this->response['eventList']) ) {
-            $this->echoJsonMsg(400, EVENT_LIST_IS_NULL, '/');
+        if( empty($this->msg['eventList']) ) {
+            $this->echoJsonMsg(400, EVENT_LIST_IS_NULL, '#');
         } else {
             // 成功获取事件列表
-            $this->echoJsonMsg(200, GET_EVENT_LIST_SUCCESS, '/');
+            $this->echoJsonMsg(200, GET_EVENT_LIST_SUCCESS, '#');
         }
     }
 
@@ -127,7 +127,6 @@ class Statistics extends Account
                 array_push($eventList, $event);
             }
         }
-
         return  $eventList;
     }
 }

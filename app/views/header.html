@@ -37,7 +37,7 @@
 	<link rel="stylesheet" href="/static/css/footer.css"  type="text/css">
 	<link rel="stylesheet" href="/static/css/main.css"  type="text/css">
 	<link rel="stylesheet" href="/static/css/login.css"  type="text/css">
-	<script src="/static/js/header.js"></script>
+	<script src="/static/js/header.js?v={$Date}"></script>
 
 </head>
 
@@ -95,7 +95,7 @@
     <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-hidden="">
         <div class="modal-dialog" style="z-index:2041;">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h4 class="modal-title">注意啦ヾ(@^▽^@)ノ </h4>
                 </div>
@@ -104,10 +104,9 @@
                     <div class="text-danger" id="error-modal-body"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="javascript:window.location.reload(true);">刷新</button>
+                    <button type="button" class="btn btn-info" id="error-modal-url" data-dismiss="modal" >确定</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
     <!-- end:   提示信息模态框 -->
-
