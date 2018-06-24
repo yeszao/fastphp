@@ -119,12 +119,13 @@ git push --force
 ```
 #### 6. [使用git和github管理自己的项目---真实开发环境的策略](https://segmentfault.com/a/1190000003739324)
 
-b22a2d7d325e069b004f7ae262dd80c10129990a
+
 
 ---
 
 ## 入坑 Atom 编辑器
 ### [Atom 备份神器 Sync-setttings 插件 ](https://blog.csdn.net/crper/article/details/47291063)
+### [自建 shadowsocks 服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)，建立 gist 仓库存储 sync 备份的 .atom 配置文件
 
 
 ---
