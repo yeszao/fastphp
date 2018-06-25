@@ -99,11 +99,21 @@ function showTag(objList)
         var row = table.insertRow(-1);
         // 在此行当前列（第一列）前插入一列
         var cell = row.insertCell(-1);
+        // 处理超过限定长度的字符串
+        var limitLength = 2;
+        if( tagName.length > limitLength) {
+            tagName = tagName.substr(0, limitLength);
+             tagName = tagName + "..";
+            // tagName.length
+            $('#debug-info').append("<br> fronStr:" + tagName );
+
+        }
+
         // 插入按钮
-        cell.innerHTML = '<button class="btn btn-block"' +
+        cell.innerHTML = '<button class="btn btn-block label-btn "' +
         ' onclick="sendItem(' + tagId +')"' +
         // 设置文本为白色，按钮颜色
-        ' style="color:white; background-color:'+ tagColor +';"' +
+        ' style="background-color:'+ tagColor +';"' +
         '>' + tagName + '</button>';
     }
 }
@@ -162,7 +172,6 @@ $(function(){
                 $('#debug-info').append("<br><br> 取消选中块：");
                 $('#debug-info').append("<br> returnBlockList ：" + JSON.stringify(returnBlockList) );
                 $('#debug-info').append("<br> blockCodeArray :" + JSON.stringify(blockCodeArray) );
-
             }
         });
     });

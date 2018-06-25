@@ -1,4 +1,4 @@
-    <!-- 引入自定义 js -->
+    <!-- 引入自定义 css js -->
     <link rel="stylesheet" href="/static/css/statistics.css"  type="text/css">
     <!-- 用时间戳动态加载 js 解决浏览器缓存 -->
 	<script src="/static/js/statistics.js?v=<%=timestamp()%>"></script>
@@ -105,36 +105,5 @@
         </div>
         <!-- start: tabbable tabs 面板组件 -->
 
-
-
-        <!-- start: 调试信息 -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="alert alert-info  alert-dismissable" id="debug-info">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                </div>
-            </div>
-        </div>
-        <!-- end:   调试信息 -->
     </div>
     <!-- end:   tabbable tabs -->
-
-    <!-- start: 提示信息模态框 -->
-    <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-hidden="">
-        <div class="modal-dialog" style="z-index:2041;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h4 class="modal-title">注意啦ヾ(@^▽^@)ノ </h4>
-                </div>
-                <!-- <div class="modal-body" style="width:150px; height:150px;"> -->
-                <div class="modal-body" style="">
-                    <div class="text-danger" id="error-modal-body"></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
-    <!-- end:   提示信息模态框 -->

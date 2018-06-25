@@ -60,6 +60,18 @@ DocumentRoot "c:/wamp/www/dwm/"
 [快速入门ThinkPHP 5.0--基础篇 2-8 场景配置](https://www.imooc.com/video/14755)
 [PHP项目配置运行环境的正确姿势](https://github.com/lisijie/homepage/blob/master/posts/tech/PHP%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF.md)
 
+## 3. LAMP 配置
+
+### 1. 配置网站根目录
+```
+# 修改网站根目录
+vi /etc/apache2/sites-available/000-default.conf
+# 重启 apache
+sudo /etc/init.d/apache2 restart
+```
+### 2. [ubuntu 二级域名配置](https://blog.csdn.net/u010071211/article/details/79511611)
+#### [非正常关闭vi编辑器后提示错误的解决方法](https://blog.csdn.net/qq_35447305/article/details/77922788)
+
 
 ---
 ## Git
@@ -179,14 +191,6 @@ git push --force
 ###
 
 ---
-
-## LAMP
-### 修改网站根目录
-```
-vi /etc/apache2/sites-available/000-default.conf
-重启apache
-/etc/init.d/apache2 restart
-```
 
 
 

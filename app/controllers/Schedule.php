@@ -65,16 +65,16 @@ class Schedule extends Account
         $this->msg['tagList'] = $this->getTagList();
         // 判断标签列表是否为空
         if( empty($this->msg['tagList']) ) {
-            $this->echoJsonMsg(400, USER_TAG_LIST_IS_NULL, '/label/add');
+            $this->echoJsonMsg(400, TAG_LIST_IS_NULL, '/label/add');
         }
 
         // 获取块信息
         $this->msg['blockList'] = $this->getBlockList();
         // 判断块列表是否为空
         if( empty($this->msg['blockList']) ) {
-            $this->echoJsonMsg(200, USER_BLOCK_LIST_IS_NULL, '#');
+            $this->echoJsonMsg(200, BLOCK_LIST_IS_NULL, '#');
         } else {
-            // 成功获取块和标签列表
+            // 成功获取块列表
             $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '#');
         }
     }

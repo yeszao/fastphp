@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-06-24 20:15:27
+Date: 2018-06-25 22:21:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `item` (
   `belong_date` date NOT NULL,
   `block_code` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1620 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1630 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
@@ -465,6 +465,16 @@ INSERT INTO `item` VALUES ('1616', '5', '77', '2018-06-21', 'block-0-2');
 INSERT INTO `item` VALUES ('1617', '5', '77', '2018-06-22', 'block-0-2');
 INSERT INTO `item` VALUES ('1618', '5', '77', '2018-06-23', 'block-0-2');
 INSERT INTO `item` VALUES ('1619', '5', '77', '2018-06-24', 'block-0-2');
+INSERT INTO `item` VALUES ('1620', '3', '77', '2018-06-25', 'block-0-2');
+INSERT INTO `item` VALUES ('1621', '3', '77', '2018-06-25', 'block-0-3');
+INSERT INTO `item` VALUES ('1622', '3', '77', '2018-06-25', 'block-1-3');
+INSERT INTO `item` VALUES ('1623', '4', '77', '2018-06-25', 'block-3-3');
+INSERT INTO `item` VALUES ('1624', '5', '77', '2018-06-25', 'block-2-1');
+INSERT INTO `item` VALUES ('1625', '5', '77', '2018-06-25', 'block-2-2');
+INSERT INTO `item` VALUES ('1626', '4', '77', '2018-06-25', 'block-3-2');
+INSERT INTO `item` VALUES ('1627', '4', '77', '2018-06-25', 'block-3-1');
+INSERT INTO `item` VALUES ('1628', '2', '77', '2018-06-25', 'block-0-4');
+INSERT INTO `item` VALUES ('1629', '2', '77', '2018-06-25', 'block-1-4');
 
 -- ----------------------------
 -- Table structure for `mood`
@@ -522,11 +532,13 @@ CREATE TABLE `template` (
   `owner_id` varchar(11) NOT NULL,
   `block_code` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of template
 -- ----------------------------
+INSERT INTO `template` VALUES ('1', '1', '77', 'block-0-2');
+INSERT INTO `template` VALUES ('2', '1', '77', 'block-0-3');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -549,7 +561,7 @@ CREATE TABLE `user` (
   `dept_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -625,5 +637,4 @@ INSERT INTO `user` VALUES ('69', '1710404103@stu.hit.edu.cn', '20331707552239619
 INSERT INTO `user` VALUES ('70', '16093030187@stu.hit.edu.cn', '451078077135207312347512213831929312245985443539', 'teacher', 'uncheck', '蓝愿', '09', '', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '女', '178652547451', null);
 INSERT INTO `user` VALUES ('71', '1404101115@stu.hit.edu.cn', '-361735473740377713716974129590900844347161037385', 'teacher', 'uncheck', '温如冰', '04', '', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '女', '178652558305', null);
 INSERT INTO `user` VALUES ('72', '180250589@stu.hit.edu.cn', '27448831379610529705458180327439652040322018972', 'alu', 'uncheck', '温如冰', '02', '', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '女', '178631393363', null);
-INSERT INTO `user` VALUES ('77', '1504103101@stu.hit.edu.cn', '76cc31cedd4f22538514673e97ce64832ee0fadf', '', 'unchecked', '蓝思追', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('78', '111', '011c945f30ce2cbafc452f39840f025693339c42', '', 'unchecked', '蓝忘机', '', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('77', '150410301@stu.hit.edu.cn', '76cc31cedd4f22538514673e97ce64832ee0fadf', '', 'unchecked', '蓝思追', '', null, null, null, null, null, null, null);
