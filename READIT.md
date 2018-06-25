@@ -158,8 +158,9 @@ git push --force
 ### [模态框被灰色阴影遮罩挡住](https://blog.csdn.net/oschina_41012066/article/details/78982969)
 ### [document.getElementById() 与 $() 区别](https://www.cnblogs.com/hujunzheng/p/4907482.html)
 ### [模态框modal的高度和宽度设置](https://blog.csdn.net/u014326004/article/details/69789187)
-### 加时间戳作为版本 解决js 文件修改后浏览器不能及时更新的问题
-    <script src="/static/js/schedule.js?v={$Date}"></script>
+### 用时间戳动态加载 js 解决浏览器缓存，即 js 文件修改后浏览器不能及时更新的问题
+    <script         src="/static/js/schedule.js?v=<%=timestamp()%>"></script>
+
 #### 1. [js 文件修改后浏览器不能及时更新](https://my.oschina.net/guopengfei/blog/411306?p=2)
 #### 2. [解决 js 缓存动态更新](https://segmentfault.com/a/1190000007404333)
 #### 3. [web 页面布局结构](https://images0.cnblogs.com/i/17148/201406/061638243337718.png)

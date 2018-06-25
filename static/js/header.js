@@ -111,8 +111,6 @@ $(function(){
 
             // 获取点击的事项块号
             var blockCode = $(e.target).attr('id');
-            // 测试信息展示
-            $('#debug-info').append("选中块号：" + blockCode + "<br></br>");
 
             // 选中块
             if(!$(v).is(".selected")) {
@@ -123,19 +121,14 @@ $(function(){
                 blockCodeArray.push(blockCode);
 
                 // 测试信息展示
-                $('#debug-info').append("选中后：<br></br>");
-                $('#debug-info').append("returnBlockList ：" + JSON.stringify(returnBlockList) + "<br></br>");
-                $('#debug-info').append("blockCodeArray :" + JSON.stringify(blockCodeArray) + "<br></br>");
+                $('#debug-info').append("<br><br> 选中块：");
+                $('#debug-info').append("<br> returnBlockList ：" + JSON.stringify(returnBlockList) );
+                $('#debug-info').append("<br> blockCodeArray :" + JSON.stringify(blockCodeArray) );
 
             // 重复选中
             } else {
                 // 移除样式
                 $(this).removeClass("selected");
-
-                // 测试信息展示
-                $('#debug-info').append("重复选中后：<br></br>");
-                $('#debug-info').append("returnBlockList ：" + JSON.stringify(returnBlockList) + "<br></br>");
-                $('#debug-info').append("blockCodeArray :" + JSON.stringify(blockCodeArray) + "<br></br>");
 
                 var blockColor;
                 for (var i = returnBlockList.length-1; i > -1; --i) {
@@ -156,6 +149,12 @@ $(function(){
 
                 // 若数组中已有则根据值删除元素
                 blockCodeArray.splice($.inArray(blockCode, blockCodeArray), 1);
+
+                // 测试信息展示
+                $('#debug-info').append("<br><br> 重复选中块：");
+                $('#debug-info').append("<br> returnBlockList ：" + JSON.stringify(returnBlockList) );
+                $('#debug-info').append("<br> blockCodeArray :" + JSON.stringify(blockCodeArray) );
+
             }
         });
     });

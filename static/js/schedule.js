@@ -35,7 +35,7 @@ function initBelongDate() {
     document.getElementById("belongDate").value=new Date().toDateInputValue();
 
     // 测试信息展示
-    $('#debug-info').append("设置默认时间<br></br>");
+    $('#debug-info').append("<br>设置默认时间");
 }
 
 
@@ -47,8 +47,10 @@ function acceptBlockAndTag(){
     var data = {};
     // 获取输入日期，默认当前日期
     data.belongDate = $("#belongDate").val();
+
     // 测试信息展示
-    $('#debug-info').append("acceptBlockAndTag() 发送数据：" + JSON.stringify(data) + "<br></br>");
+    $('#debug-info').append("<br><br> acceptBlockAndTag() ");
+    $('#debug-info').append("<br> 发送数据：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
@@ -58,7 +60,7 @@ function acceptBlockAndTag(){
         success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("返回块和标签数据：" + JSON.stringify(msg) + "<br></br>");
+            $('#debug-info').append("<br> 返回数据：" + JSON.stringify(msg) );
             // 获取返回数据
             returnBlockList = msg.blockList;  //块信息,全局变量，用于刷新反复选中后的块颜色
 
@@ -96,7 +98,8 @@ function sendItem(tagId){
     blockCodeArray = [];
 
     // 测试信息展示
-    $('#debug-info').append("发送数据：" + JSON.stringify(data) + "<br></br>");
+    $('#debug-info').append("<br><br> sendItem(tagId)");
+    $('#debug-info').append("<br> 发送数据 ：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
@@ -106,7 +109,7 @@ function sendItem(tagId){
         success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("返回数据：" + JSON.stringify(msg) + "<br></br>");
+            $('#debug-info').append("<br> 返回数据 ：" + JSON.stringify(msg) );
 
             // 状态码
             if(msg.status == 200){

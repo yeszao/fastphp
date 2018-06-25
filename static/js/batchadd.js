@@ -41,6 +41,9 @@ function initStartAndEndDate() {
         return local.toJSON().slice(0,10);
     });
     document.getElementById("endDate").value=new Date().toEndDateInputValue();
+
+    // 测试信息展示
+    $('#debug-info').append("<br>设置默认开始截止日期");
 }
 
 
@@ -51,7 +54,8 @@ function acceptBlockAndTag(){
 
     var data = {};
     // 测试信息展示
-    $('#debug-info').append("发送数据：" + JSON.stringify(data) + "<br></br>");
+    $('#debug-info').append("<br><br> acceptBlockAndTag() ");
+    $('#debug-info').append("<br> 发送数据：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
@@ -61,7 +65,7 @@ function acceptBlockAndTag(){
         success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("返回块和标签数据：" + JSON.stringify(msg) + "<br></br>");
+            $('#debug-info').append("<br> 返回数据：" + JSON.stringify(msg) );
             // 全局变量，用于刷新反复选中后的块颜色
             returnBlockList = msg.blockList;  //块信息
 
@@ -97,7 +101,8 @@ function sendItem(tagId){
     blockCodeArray = [];
 
     // 测试信息展示
-    $('#debug-info').append("发送数据：" + JSON.stringify(data) + "<br></br>");
+    $('#debug-info').append("<br><br> sendItem(tagId)");
+    $('#debug-info').append("<br> 发送数据 ：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
@@ -107,7 +112,7 @@ function sendItem(tagId){
         success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("返回数据：" + JSON.stringify(msg) + "<br></br>");
+            $('#debug-info').append("<br> 返回数据 ：" + JSON.stringify(msg) );
 
             // 状态码
             if(msg.status == 200){
@@ -136,7 +141,8 @@ function applyTemplate() {
     data.endDate = $("#endDate").val();
 
     // 测试信息展示
-    $('#debug-info').append("应用模板发送数据：" + JSON.stringify(data) + "<br></br>");
+    $('#debug-info').append("<br><br> applyTemplate()");
+    $('#debug-info').append("<br> 发送数据 ：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
@@ -146,7 +152,7 @@ function applyTemplate() {
         success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("返回块和标签数据：" + JSON.stringify(msg) + "<br></br>");
+            $('#debug-info').append("<br> 返回数据 ：" + JSON.stringify(msg) );
 
             // 状态码，应用模板成功
             if(msg.status == 200){

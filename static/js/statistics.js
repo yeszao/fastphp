@@ -38,6 +38,9 @@ function initStartAndEndDate() {
         return local.toJSON().slice(0,10);
     });
     document.getElementById("endDate").value=new Date().toEndDateInputValue();
+
+    // 测试信息展示
+    $('#debug-info').append("<br>设置默认开始截止日期");
 }
 
 
@@ -52,7 +55,8 @@ function acceptEventList(){
     data.endDate = $("#endDate").val();
 
     // 测试信息展示
-    $('#debug-info').append("发送查询数据：" + JSON.stringify(data) + "<br></br>");
+    $('#debug-info').append("<br><br> acceptEventList() ");
+    $('#debug-info').append("<br> 发送数据：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
@@ -63,7 +67,7 @@ function acceptEventList(){
         success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("返回事件数据：" + JSON.stringify(msg) + "<br></br>");
+            $('#debug-info').append("<br> 返回数据：" + JSON.stringify(msg) );
 
             // 状态码，获取事件成功
             if(msg.status == 200){
@@ -104,11 +108,11 @@ function showPieChart() {
 function showEventList_DOM(objList)
 {
     // 测试信息展示
-    $('#debug-info').append("事件表格数据：" + JSON.stringify(objList) + "<br></br>");
+    $('#debug-info').append("<br><br> showEventList_DOM() ");
+    $('#debug-info').append("<br> 数据：" + JSON.stringify(objList) );
 
     // 清空表格旧数据
     $("#event-list-table-1 tr:not(:first)").html("");
-
     // 获取表格 id
     var table = document.getElementById("event-list-table-1");
 
