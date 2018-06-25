@@ -500,5 +500,5 @@
     <!-- end:   tabbable tabs -->
 
     <!-- 若放在开头 则.selected 样式 需双击才能点选已经显示过的标签 -->
-    <!-- 加时间戳作为版本 解决js 文件修改后浏览器不能及时更新的问题 -->
-    <script src="/static/js/schedule.js?v={$Date}"></script>
+    <!-- 用时间戳动态加载 js 解决浏览器缓存 -->
+	<script src="/static/js/schedule.js?v=<%=timestamp()%"></script>

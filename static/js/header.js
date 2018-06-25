@@ -115,36 +115,44 @@ $(function(){
             $('#debug-info').append("选中块号：" + blockCode + "<br></br>");
 
             // 选中块
-            if(!$(v).is(".selected")){
+            if(!$(v).is(".selected")) {
                 // 改变样式
-                // $(this).css("background-color", "#BBFFFF");
+                $(this).css("background-color", "#BBFFFF");
                 $(this).addClass("selected");
                 // 选中的块号加入数组
                 blockCodeArray.push(blockCode);
+
+                // 测试信息展示
+                $('#debug-info').append("选中后：<br></br>");
+                $('#debug-info').append("returnBlockList ：" + JSON.stringify(returnBlockList) + "<br></br>");
+                $('#debug-info').append("blockCodeArray :" + JSON.stringify(blockCodeArray) + "<br></br>");
+
             // 重复选中
-            }else{
+            } else {
                 // 移除样式
                 $(this).removeClass("selected");
 
-                // // 测试信息展示
-                // $('#debug-info').append("返回块数据：" + JSON.stringify(returnBlockList) + "<br></br>");
+                // 测试信息展示
+                $('#debug-info').append("重复选中后：<br></br>");
+                $('#debug-info').append("returnBlockList ：" + JSON.stringify(returnBlockList) + "<br></br>");
+                $('#debug-info').append("blockCodeArray :" + JSON.stringify(blockCodeArray) + "<br></br>");
 
-                // var blockColor;
-                // for (var i = 0; i < returnBlockList.length; i++) {
-                //     if(blockCode == returnBlockList[i]['block_code']) {
-                //         blockColor = returnBlockList[i]['block_color'];
-                //         break;
-                //     }
-                // }
+                var blockColor;
+                for (var i = returnBlockList.length-1; i > -1; --i) {
+                    if(blockCode == returnBlockList[i].block_code) {
+                        blockColor = returnBlockList[i].block_color;
+                        break;
+                    }
+                }
 
-                // // 若原先已有颜色，即在对象数组 returnBlockList 中找到 blockCode
-                // // 则变回标签的颜色
-                // // 否则变为初始化颜色
-                // if (i < returnBlockList.length) {
-                //     $(this).css("background-color", blockColor);
-                // } else {
-                //     $(this).css("background-color", "#eeeeee");
-                // }
+                // 若原先已有颜色，即在对象数组 returnBlockList 中找到 blockCode
+                // 则变回标签的颜色
+                // 否则变为初始化颜色
+                if (i > -1) {
+                    $(this).css("background-color", blockColor);
+                } else {
+                    $(this).css("background-color", "#eeeeee");
+                }
 
                 // 若数组中已有则根据值删除元素
                 blockCodeArray.splice($.inArray(blockCode, blockCodeArray), 1);

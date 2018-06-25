@@ -1,6 +1,6 @@
 // 将点击事项的坐标加入 全局数组
 var blockCodeArray = [];
-// 返回的快信息列表
+// 返回的块信息列表
 var returnBlockList;
 
 /**
