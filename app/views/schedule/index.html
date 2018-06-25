@@ -18,24 +18,23 @@
                             <a href="#tag-list-pane-2" role="tab" data-toggle="tab">标签列表2</a>
                         </li>
                     </ul>
-                    <div class="tab-content">
+                    <div class="tab-content ">
 
                         <!-- start: 日程面板 -->
                         <div class="tab-pane active" id="schedule-pane">
-                            <div class="container">
+                            <div class="col-sm-8 col-sm-offset-2">
                                 <!-- start: 选择日期 -->
-                                <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xs-8 col-xs-offset-1 col-sm-3  col-sm-offset-3">
-                                        <div class=" form-group input-group">
-                                            <span class="input-group-addon">日期</span>
-                                            <input type="date" id="belongDate" />
+                                <div class="row " >
+                                    <div class="col-xs-12" style="margin: 15px auto;">
+                                        <div class="col-xs-9 col-sm-5 col-sm-offset-3">
+                                            <div class="input-group input-inline-xs ">
+                                                <span class="input-group-addon">日期</span>
+                                                <input type="date"  class="form-control" id="belongDate" />
+                                            </div>
                                         </div>
-
-                                    </div>
-
-                                    <div class="">
-                                        <button class="btn btn-success" id="selectDate" >确认</button>
-
+                                        <div class="col-xs-2  col-sm-2">
+                                            <button type="button" class="btn btn-success" id="selectDate" >确认</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- end:   选择日期 -->
