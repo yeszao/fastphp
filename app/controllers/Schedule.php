@@ -66,9 +66,6 @@ class Schedule extends Account
         // 判断标签列表是否为空
         if( empty($this->msg['tagList']) ) {
             $this->echoJsonMsg(400, TAG_LIST_IS_NULL, '/label/add');
-        } else {
-            // 成功获取标签列表
-            $this->echoJsonMsg(200, GET_TAG_SUCCESS, '#');
         }
 
         // 获取块信息
@@ -78,7 +75,7 @@ class Schedule extends Account
             $this->echoJsonMsg(200, BLOCK_LIST_IS_NULL, '#');
         } else {
             // 成功获取块列表
-            $this->echoJsonMsg(200, GET_BLOCK_SUCCESS, '#');
+            $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '#');
         }
     }
 

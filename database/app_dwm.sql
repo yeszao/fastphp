@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-06-25 13:11:04
+Date: 2018-06-25 22:21:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `item` (
   `belong_date` date NOT NULL,
   `block_code` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1620 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1630 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
@@ -465,6 +465,16 @@ INSERT INTO `item` VALUES ('1616', '5', '77', '2018-06-21', 'block-0-2');
 INSERT INTO `item` VALUES ('1617', '5', '77', '2018-06-22', 'block-0-2');
 INSERT INTO `item` VALUES ('1618', '5', '77', '2018-06-23', 'block-0-2');
 INSERT INTO `item` VALUES ('1619', '5', '77', '2018-06-24', 'block-0-2');
+INSERT INTO `item` VALUES ('1620', '3', '77', '2018-06-25', 'block-0-2');
+INSERT INTO `item` VALUES ('1621', '3', '77', '2018-06-25', 'block-0-3');
+INSERT INTO `item` VALUES ('1622', '3', '77', '2018-06-25', 'block-1-3');
+INSERT INTO `item` VALUES ('1623', '4', '77', '2018-06-25', 'block-3-3');
+INSERT INTO `item` VALUES ('1624', '5', '77', '2018-06-25', 'block-2-1');
+INSERT INTO `item` VALUES ('1625', '5', '77', '2018-06-25', 'block-2-2');
+INSERT INTO `item` VALUES ('1626', '4', '77', '2018-06-25', 'block-3-2');
+INSERT INTO `item` VALUES ('1627', '4', '77', '2018-06-25', 'block-3-1');
+INSERT INTO `item` VALUES ('1628', '2', '77', '2018-06-25', 'block-0-4');
+INSERT INTO `item` VALUES ('1629', '2', '77', '2018-06-25', 'block-1-4');
 
 -- ----------------------------
 -- Table structure for `mood`
@@ -522,11 +532,13 @@ CREATE TABLE `template` (
   `owner_id` varchar(11) NOT NULL,
   `block_code` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of template
 -- ----------------------------
+INSERT INTO `template` VALUES ('1', '1', '77', 'block-0-2');
+INSERT INTO `template` VALUES ('2', '1', '77', 'block-0-3');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -549,7 +561,7 @@ CREATE TABLE `user` (
   `dept_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
