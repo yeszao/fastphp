@@ -21,7 +21,7 @@ class Schedule extends Account
     // 块代号数组
     protected $blockCodeArray = Array();
     // 响应信息
-    protected $response = Array();
+    protected $msg = Array();
 
 
     /**
@@ -41,11 +41,11 @@ class Schedule extends Account
      * @param $_POST['belongDate'] 前端传来的所属日期
      * @param $this->getUserId() 当前用户编号
      *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     * @return $this->response['url'] 跳转链接
-     * @return $this->response['blockList'] 块列表
-     * @return $this->response['tagList'] 标签列表
+     * @return $this->msg['status'] 状态码
+     * @return $this->msg['info'] 提示信息
+     * @return $this->msg['url'] 跳转链接
+     * @return $this->msg['blockList'] 块列表
+     * @return $this->msg['tagList'] 标签列表
      */
     public function acceptBlockAndTag()
     {
@@ -58,25 +58,25 @@ class Schedule extends Account
         if( !empty($_POST['belongDate']) ) {
             $this->belongDate = $_POST['belongDate'];
         } else {
-            $this->echoJsonMsg(400, BELONG_DATE_IS_NULL, '/');
+            $this->echoJsonMsg(400, BELONG_DATE_IS_NULL, '#');
         }
 
         // 获取标签信息
-        $this->response['tagList'] = $this->getTagList();
+        $this->msg['tagList'] = $this->getTagList();
         // 判断标签列表是否为空
-        if( empty($this->response['tagList']) ) {
+        if( empty($this->msg['tagList']) ) {
             $this->echoJsonMsg(400, USER_TAG_LIST_IS_NULL, '/label/add');
         }
 
         // 获取块信息
-        $this->response['blockList'] = $this->getBlockList();
+        $this->msg['blockList'] = $this->getBlockList();
         // 判断块列表是否为空
-        if( empty($this->response['blockList']) ) {
-            $this->echoJsonMsg(200, USER_BLOCK_LIST_IS_NULL, '/');
+        if( empty($this->msg['blockList']) ) {
+            $this->echoJsonMsg(200, USER_BLOCK_LIST_IS_NULL, '#');
+        } else {
+            // 成功获取块和标签列表
+            $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '#');
         }
-
-        // 成功获取块和标签列表
-        $this->echoJsonMsg(200, GET_BLOCK_AND_TAG_SUCCESS, '/');
     }
 
 
@@ -87,9 +87,9 @@ class Schedule extends Account
      * @param $_POST['belongDate'] 所属日期
      * @param $_POST['blockCodeArray'] 块号数组
      *
-     * @return $this->response['status'] 状态码
-     * @return $this->response['info'] 提示信息
-     * @return $this->response['url'] 跳转链接
+     * @return $this->msg['status'] 状态码
+     * @return $this->msg['info'] 提示信息
+     * @return $this->msg['url'] 跳转链接
      */
     public function sendItem()
     {
@@ -109,22 +109,36 @@ class Schedule extends Account
         if( !empty($_POST['belongDate']) ) {
             $this->belongDate = $_POST['belongDate'];
         } else {
-            $this->echoJsonMsg(400, BELONG_DATE_IS_NULL, '/');
+            $this->echoJsonMsg(400, BELONG_DATE_IS_NULL, '#');
         }
 
         // 接收数据
         if( !empty($_POST['blockCodeArray']) ) {
             $this->blockCodeArray = $_POST['blockCodeArray'];
         } else {
-            $this->echoJsonMsg(400, BLOCK_CODE_ARRAY_IS_NULL, '/');
+            $this->echoJsonMsg(400, BLOCK_CODE_ARRAY_IS_NULL, '#');
         }
 
         // 设置事项
         if( $this->setItemList() ) {
-            $this->echoJsonMsg(200, ADD_ITEM_SUCCESS, '/');
+            $this->echoJsonMsg(200, ADD_ITEM_SUCCESS, '#');
         } else {
-            $this->echoJsonMsg(400, ADD_ITEM_FAILED, '/');
+            $this->echoJsonMsg(400, ADD_ITEM_FAILED, '#');
         }
+    }
+
+
+    /**
+     * 获取标签列表
+     *
+     * @param $this->getUserId() 用户编号
+     *
+     * @return $tagList 该用户添加的所有标签列表
+     */
+    private function getTagList()
+    {
+        $this->tagList = (new Tag())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
+        return $this->tagList;
     }
 
 
@@ -167,20 +181,6 @@ class Schedule extends Account
         }
         // 块信息列表
         return $blockList;
-    }
-
-
-    /**
-     * 获取标签列表
-     *
-     * @param $this->getUserId() 用户编号
-     *
-     * @return $tagList 该用户添加的所有标签列表
-     */
-    private function getTagList()
-    {
-        $this->tagList = (new Tag())->where(["owner_id = ?"], [$this->getUserId()])->selectAll();
-        return $this->tagList;
     }
 
 

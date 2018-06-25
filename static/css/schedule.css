@@ -10,15 +10,9 @@
     margin: auto;
     padding: 0;					/* 不设置内边距*/
     cursor: pointer;			/* 默认鼠标移动上去时显示手形图标 */
-    background-color: #eeeeee;	/* 默认背景颜色是灰色 */
+    background-color: #EEEEEE;	/* 默认背景颜色是灰色 */
     box-shadow: inset 0px 0px 1px #FFFFCC;		/* 设置少许的阴影 */
 }
-
-/*文本垂直居中*/
-.table tbody tr td {
-    vertical-align: middle;
-}
-
 
 /*除手机外*/
 @media (min-width: 768px) {
@@ -30,4 +24,10 @@
 
 .selected {
 	background-color: #BBFFFF;
+}
+
+
+/*文本垂直居中*/
+.table tbody tr td {
+    vertical-align: middle;
 }

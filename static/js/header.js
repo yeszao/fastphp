@@ -4,16 +4,29 @@
 window.onload = function(){
 
 
-}
+};
 
 /**
  * 模态框显示提示信息
  */
-function showInfoModal(info){
+function showInfoModal(status, info, url){
     $('#error-modal').modal('show');
     $('#error-modal').on('shown.bs.modal', function() {
-        $('#error-modal-body').text("");    // 清空数据
-        $('#error-modal-body').append(info);    // 显示信息
+
+        // 清空数据
+        $('#error-modal-body').text("");
+
+        // 显示提示信息
+        $('#error-modal-body').append("状态：" + status + "<br></br>");
+        $('#error-modal-body').append("提示信息：" + info + "<br></br>");
+        $('#error-modal-body').append("跳转链接：" + url + "<br></br>");
+
+        // 跳转到指定链接
+        $('#error-modal-url').click(function() {
+            // 跳转到指定页面
+            window.location.href = url;
+        });
+        // $('#error-modal-url').attr('href', url);
     });
 }
 
@@ -23,37 +36,42 @@ function showInfoModal(info){
  */
 function showBlock(blockList){
 
+    var blockCode;  // 块号
+    var blockDom;  // 块 Dom 对象
+    var blockColor; // 块背景颜色
+    var blockText;  // 块文本
+
+    $(".quarter-block").each(function(k,v){
+        // 移除样式
+        $(this).removeClass("selected");
+    });
+
     // 还原所有块的背景颜色
     for (var i = 0; i < 24; i++) {
         for (var j = 1; j < 5; j++) {
-            var blockCode = 'block-'+i+'-'+j;
-            // 块 Dom 对象
-            var block = document.getElementById(blockCode);
-            // $(block).addClass('quarter-block');
-            $(block).css("background-color", "#eeeeee");
-            block.innerText = "";
+            blockCode = 'block-'+i+'-'+j;
+            blockDom = document.getElementById(blockCode);
+            // $(blockDom).addClass('quarter-block');
+            $(blockDom).css("background-color", "#eeeeee");
+            blockDom.innerText = "";
          }
     }
 
     // 设置传入的块背景颜色和文本
-    for (var i = 0; i < blockList.length; i++) {
-        // 块号
-        var blockCode = blockList[i]['block_code'];
-        // 块背景颜色
-        var blockColor = blockList[i]['block_color'];
-        // 块文本
-        var blockText = blockList[i]['block_text'];
-        // 块 Dom 对象
-        var block = document.getElementById(blockCode);
-        $(block).css("background-color", blockColor);
+    for (var k = 0; k < blockList.length; k++) {
+        blockCode   = blockList[k].block_code;
+        blockColor  = blockList[k].block_color;
+        blockText   = blockList[k].block_text;
+        blockDom       = document.getElementById(blockCode);
+        $(blockDom).css("background-color", blockColor);
 
         // 设置文本内容
-        block.innerText = blockText;
+        blockDom.innerText = blockText;
 
         // 文本垂直居中？
 
         // 文本颜色为白色
-        $(block).css("color", "#ffffff");
+        $(blockDom).css("color", "#ffffff");
     }
 }
 
@@ -72,21 +90,21 @@ function showTag(objList)
     {
         // 标签对象
         var obj     = objList[i];
-        var tagId   = obj['id'];
-        var tagName = obj['tag_name'];
-        var ownerId = obj['owner_id'];
-        var tagColor = obj['tag_color'];
+        var tagId   = obj.id;
+        var tagName = obj.tag_name;
+        var ownerId = obj.owner_id;
+        var tagColor = obj.tag_color;
 
         // 在表格当前行（第一行）前插入一行
         var row = table.insertRow(-1);
         // 在此行当前列（第一列）前插入一列
         var cell = row.insertCell(-1);
         // 插入按钮
-        cell.innerHTML = '<button class="btn btn-block"'
-        + ' onclick="sendItem(' + tagId +')"'
+        cell.innerHTML = '<button class="btn btn-block"' +
+        ' onclick="sendItem(' + tagId +')"' +
         // 设置文本为白色，按钮颜色
-        + ' style="color:white; background-color:'+ tagColor +';"'
-        + '>' + tagName + '</button>';
+        ' style="color:white; background-color:'+ tagColor +';"' +
+        '>' + tagName + '</button>';
     }
 }
 
@@ -101,43 +119,50 @@ $(function(){
 
             // 获取点击的事项块号
             var blockCode = $(e.target).attr('id');
-            // 测试信息展示
-            $('#debug-info').append("选中块号：" + blockCode + "<br></br>");
 
             // 选中块
-            if(!$(v).is(".selected")){
+            if(!$(v).is(".selected")) {
                 // 改变样式
-                // $(this).css("background-color", "#BBFFFF");
+                $(this).css("background-color", "#BBFFFF");
                 $(this).addClass("selected");
                 // 选中的块号加入数组
                 blockCodeArray.push(blockCode);
+
+                // 测试信息展示
+                $('#debug-info').append("<br><br> 选中块：");
+                $('#debug-info').append("<br> returnBlockList ：" + JSON.stringify(returnBlockList) );
+                $('#debug-info').append("<br> blockCodeArray :" + JSON.stringify(blockCodeArray) );
+
             // 重复选中
-            }else{
+            } else {
                 // 移除样式
                 $(this).removeClass("selected");
 
-                // // 测试信息展示
-                // $('#debug-info').append("返回块数据：" + JSON.stringify(returnBlockList) + "<br></br>");
+                var blockColor;
+                for (var i = returnBlockList.length-1; i > -1; --i) {
+                    if(blockCode == returnBlockList[i].block_code) {
+                        blockColor = returnBlockList[i].block_color;
+                        break;
+                    }
+                }
 
-                // var blockColor;
-                // for (var i = 0; i < returnBlockList.length; i++) {
-                //     if(blockCode == returnBlockList[i]['block_code']) {
-                //         blockColor = returnBlockList[i]['block_color'];
-                //         break;
-                //     }
-                // }
-
-                // // 若原先已有颜色，即在对象数组 returnBlockList 中找到 blockCode
-                // // 则变回标签的颜色
-                // // 否则变为初始化颜色
-                // if (i < returnBlockList.length) {
-                //     $(this).css("background-color", blockColor);
-                // } else {
-                //     $(this).css("background-color", "#eeeeee");
-                // }
+                // 若原先已有颜色，即在对象数组 returnBlockList 中找到 blockCode
+                // 则变回标签的颜色
+                // 否则变为初始化颜色
+                if (i > -1) {
+                    $(this).css("background-color", blockColor);
+                } else {
+                    $(this).css("background-color", "#eeeeee");
+                }
 
                 // 若数组中已有则根据值删除元素
                 blockCodeArray.splice($.inArray(blockCode, blockCodeArray), 1);
+
+                // 测试信息展示
+                $('#debug-info').append("<br><br> 取消选中块：");
+                $('#debug-info').append("<br> returnBlockList ：" + JSON.stringify(returnBlockList) );
+                $('#debug-info').append("<br> blockCodeArray :" + JSON.stringify(blockCodeArray) );
+
             }
         });
     });
@@ -150,15 +175,10 @@ $(function(){
  * @param  {[type]} objList [description]
  * @return {[type]}         [description]
  */
-function showTagList_DOM(objList)
+function showTagList_DOM(objLists)
 {
-    // 空参数为测试
-    if(objList === undefined){
-        alert("table展示测试");
-        var objList = [{"id":"4","tag_name":"数学","owner_id":"1","color":"red"},{"id":"2","tag_name":"英语","owner_id":"1","color":"yellow"},{"id":"3","tag_name":"政治","owner_id":"1","color":"green"}];
-    }
     // parse 解析
-    var objList = JSON.parse(objList);
+    var objList = JSON.parse(objLists);
 
     // 获取表格 id
     var table = document.getElementById("tag-list-table-1");
@@ -171,8 +191,8 @@ function showTagList_DOM(objList)
             var cell = row.insertCell(-1);
             cell.innerHTML=obj[key];
         }
-        var cell=row.insertCell(-1);
-        cell.innerHTML="<a href=\"#\" onclick=\"fooddelete(this)\">删除</a> ";
+        var cellDelete=row.insertCell(-1);
+        cellDelete.innerHTML="<a href=\"#\" onclick=\"fooddelete(this)\">删除</a> ";
     }
 }
 

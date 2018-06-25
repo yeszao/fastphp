@@ -56,6 +56,9 @@ DocumentRoot "c:/wamp/www/dwm/"
 
 ### 4. 配置项目配置文件
 > 修改/config/config.php
+#### 场景配置
+[快速入门ThinkPHP 5.0--基础篇 2-8 场景配置](https://www.imooc.com/video/14755)
+[PHP项目配置运行环境的正确姿势](https://github.com/lisijie/homepage/blob/master/posts/tech/PHP%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF.md)
 
 
 ---
@@ -125,9 +128,14 @@ git push --force
 ---
 
 ## 入坑 Atom 编辑器
-### [Atom 备份神器 Sync-setttings 插件 ](https://blog.csdn.net/crper/article/details/47291063)
+### [Atom 备份神器 —— Sync Settings 教程](https://www.cnblogs.com/hooray/p/5885211.html)
+    Personal access tokens : b22a2d7d325e069b004f7ae262dd80c10129990a
+    Gist Id : 4bed82817c679576258683eb7d70cb6a
+    Gist 库[已被墙]: https://gist.github.com/FaceShawn/4bed82817c679576258683eb7d70cb6a
 ### [自建 shadowsocks 服务器教程](https://github.com/Alvin9999/new-pac/wiki/%E8%87%AA%E5%BB%BAss%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%99%E7%A8%8B)，建立 gist 仓库存储 sync 备份的 .atom 配置文件
+### [通过PayPal取消Vultr预核准付款防止自动扣费M](https://www.wn789.com/5496.html)
 ### [markdown-preview-enhanced 文档](https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/)
+### [atom 中使用自定义 JSHint](https://blog.csdn.net/u010620152/article/details/71404192)
 
 
 ---
@@ -150,8 +158,9 @@ git push --force
 ### [模态框被灰色阴影遮罩挡住](https://blog.csdn.net/oschina_41012066/article/details/78982969)
 ### [document.getElementById() 与 $() 区别](https://www.cnblogs.com/hujunzheng/p/4907482.html)
 ### [模态框modal的高度和宽度设置](https://blog.csdn.net/u014326004/article/details/69789187)
-### 加时间戳作为版本 解决js 文件修改后浏览器不能及时更新的问题
-    <script src="/static/js/schedule.js?v={$Date}"></script>
+### 用时间戳动态加载 js 解决浏览器缓存，即 js 文件修改后浏览器不能及时更新的问题
+    <script         src="/static/js/schedule.js?v=<%=timestamp()%>"></script>
+
 #### 1. [js 文件修改后浏览器不能及时更新](https://my.oschina.net/guopengfei/blog/411306?p=2)
 #### 2. [解决 js 缓存动态更新](https://segmentfault.com/a/1190000007404333)
 #### 3. [web 页面布局结构](https://images0.cnblogs.com/i/17148/201406/061638243337718.png)

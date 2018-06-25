@@ -1,2 +1,6 @@
 .idea
 vendor
+
+/config/dev.php
+/congig/test.php
+/config/prod.php
