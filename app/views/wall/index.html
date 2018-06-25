@@ -1,5 +1,7 @@
-
-    <script src="/static/js/wall.js"></script>
+<!-- 引入自定义 css js-->
+<link rel="stylesheet" href="/static/css/wall.css?v=<%=timestamp()%>"  type="text/css">
+<!-- 用时间戳动态加载 js 解决浏览器缓存 -->
+<script src="/static/js/wall.js?v=<%=timestamp()%>"></script>
 
     <!-- start: wall panel -->
     <div class="container body-container">
@@ -8,53 +10,28 @@
         <div class="">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="alert alert-danger">心情墙</div>
+                    <div class="col-xs-12 text-center">
+                        <h3 class="alert alert-danger">心情墙</h3>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <textarea name="content" id="mood" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <input class="btn btn-default" type="button" value="添加心情" onclick="javascript:addMood();">
-
-                    <!-- </input> -->
+                    <input class="btn btn-primary" type="button" value="添加心情" onclick="javascript:sendMood();">
                 </div>
 
-             <!--    <div class="row">
-                    <div class="col-xs-12">
-                        <table class="table table-striped table-condensed" id="wallList_table">
-                            <thead>
-                                <tr>
-                                    <td>id</td>
-                                    <td>user_id</td>
-                                    <td>content</td>
-                                    <td>create_time</td>
-                                    <td>update_time</td>
-                                    <td>delete</td>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div> -->
-
+                <!-- start：心情列表 -->
                 <div class="testDiv">
                     <div class="container">
-
                     </div>
                 </div>
+                <!-- end：   心情列表 -->
 
             </div>
         </div>
         <!-- end:   心情墙面板 -->
-
-       <!-- start: 提示信息 -->
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="alert alert-info" id="debug-info"></div>
-            </div>
-        </div>
-        <!-- end:   提示信息 -->
 
     </div>
     <!-- end:   wall panel -->

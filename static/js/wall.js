@@ -2,46 +2,42 @@
  * 添加心情
  * @return {[type]}         [description]
  */
-
-function addMood(){
+function sendMood(){
     var data = {};
-    data['mood'] = $("#mood").val();    //正在输入的心情mood
+    data.mood = $("#mood").val();    //正在输入的心情mood
 
     // 测试信息展示
-    $('#debug-info').append("添加心情发送的数据："+  JSON.stringify(data) +"<br></br>");
+    $('#debug-info').append("<br> 发送数据：" + JSON.stringify(data) );
 
     $.ajax({
         type: "POST",
-        url: "/wall/addmood",
+        url: "/wall/sendmood",
         cache: false,
         // contentType: "application/json;charset=utf-8",    //发送数据类型
         data: data,  //提交到后台的数据
         dataType: "json",   //回调函数接收数据的数据格式
-        success: function(response){
+        success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("添加心情后返回数据："+ JSON.stringify(response) +"<br></br>");
-
-            // 获取返回数据
-            var status = response['status'];    //状态码
-            var info = response['info'];  //提示信息
+            $('#debug-info').append("<br> 返回数据：" + JSON.stringify(msg) );
 
             // 状态码，获取块数据成功
-            if(status == 200) {
+            if(msg.status == 200) {
                 // 添加成功模态框
-                showInfoModal("状态码："+ status +"<br><br>提示信息："+ info);
+                showInfoModal( msg.status, msg.info, msg.url);
             } else {
                 // 模态框显示状态码和提示信息
-                showInfoModal("状态码："+ status +"<br><br>提示信息："+ info);
+                showInfoModal( msg.status, msg.info, msg.url);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("addMood 错误！"
-                + "\ntextStatus = " + textStatus
-                + "\n错误原因： " + errorThrown);
+            // 模态框显示状态码、提示信息、跳转链接
+            showInfoModal( '404', 'ajax 请求错误！', '#');
         },
     });
 }
+
+
 /**
  * 展示心情列表
  * @param  {[type]} moodList [description]
@@ -56,18 +52,17 @@ function showMoodList(moodList) {
         // 时间戳转日期显示
         var createTime =new Date(parseInt(moodList[i].create_time) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
         var updateTime =new Date(parseInt(moodList[i].update_time) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
-        html += '<div class="alert alert-warning">'
+        html += '<div class="alert alert-warning">';
             html += '<div class="row list_emotion" >';
                 // html += ' <div class="col-xs-3 list_date">' + createTime + '</div>';
-                html += ' <div class="col-xs-3 col-offset-3 list_user_id">' + moodList[i].user_name + '</div>';
+                html += ' <div class="col-xs-4 col-sm-1 list_user_id">' + moodList[i].user_name + '</div>';
+                html += '<div class="col-xs-8 col-sm-4 list_date">'+ updateTime + '</div>';
             html += '</div>';
             html += '<div class="row list_emotion ">';
-                html += '<div class="col-xs-6 col-offset-2 list_content">' + moodList[i].content + '</div>';
-                html += '<div class="col-xs-2 col-offset-2 list_date">'+ updateTime + '</div>';
+                html += '<div class="col-xs-12 list_content">' + moodList[i].content + '</div>';
             html += '</div>';
         html += '</div>';
     }
-    // $('#debug-info').append("html:"+ html +"<br></br>");
     $testDiv.append(html);
 }
 
@@ -76,38 +71,37 @@ function showMoodList(moodList) {
  * 获取心情数据
  * @return {[type]} [description]
  */
-function getMoodList(){
+function acceptMoodList(){
+    var data = {};
+
+    // 测试信息展示
+    $('#debug-info').append("<br><br> acceptMoodList() ");
+    $('#debug-info').append("<br> 发送数据：" + JSON.stringify(data) );
+
     $.ajax({
         type: "POST",
-        url: "/wall/getMoodList",
-        contentType: "application/json;charset=utf-8",    //发送数据类型
-        data: {"title":"test", "sub":[1,2,3]},  //提交到后台的数据
+        url: "/wall/acceptMoodList",
+        data: data,  //提交到后台的数据
         dataType: "json",   //回调函数接收数据的数据格式
-        success: function(response){
+        success: function(msg){
 
             // 测试信息展示
-            $('#debug-info').append("添加心情后返回数据："+ JSON.stringify(response) +"<br></br>");
+            $('#debug-info').append("<br> 返回数据：" + JSON.stringify(msg) );
 
-            // 获取返回数据
-            var status = response['status'];    //状态码
-            var info = response['info'];  //提示信息
-            var moodList = response['moodList'];
 
             // 状态码，获取块数据成功
-            if(status == 200) {
+            if(msg.status == 200) {
 
                 //加载展示心情函数
-                showMoodList(moodList);
+                showMoodList(msg.moodList);
             } else {
                 // 模态框显示状态码和提示信息
-                showInfoModal("状态码："+ status +"<br><br>提示信息："+ info);
+                showInfoModal( msg.status, msg.info, msg.url);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("getEmotionList 错误！"
-                + "\nXMLHttpRequest = " + JSON.stringify(XMLHttpRequest)
-                + "\ntextStatus = " + textStatus
-                + "\n错误原因： " + errorThrown);
+            // 模态框显示状态码、提示信息、跳转链接
+            showInfoModal( '404', 'ajax 请求错误！', '#');
         },
     });
 }
@@ -120,6 +114,6 @@ function getMoodList(){
  */
 window.onload = function(){
 
-    getMoodList();
+    acceptMoodList();
 
-}
+};

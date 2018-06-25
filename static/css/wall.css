@@ -27,9 +27,9 @@
     }
 
     .list_content{
-        text-indent: 40px;
+        text-indent: 30px;
         /*background-color: #eee;*/
         color: #666;
         font-family: Sans-serif,Serif;
-        font-size: 25px;
+        font-size: 16px;
     }
