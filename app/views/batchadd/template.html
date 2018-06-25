@@ -1,5 +1,7 @@
     <!-- 引入自定义 css -->
     <link rel="stylesheet" href="/static/css/schedule.css"  type="text/css">
+    <!-- 用时间戳动态加载 js 解决浏览器缓存 -->
+	<script src="/static/js/batchadd.js?v=<%=timestamp()%>"></script>
 
     <div class="container container-fluid body-container">
 
@@ -450,7 +452,4 @@
         <!-- start: tabbable tabs 面板组件 -->
 
     </div>
-    <!-- end:   tabbable tabs -->
-
-    <!-- 用时间戳动态加载 js 解决浏览器缓存 -->
-	<script src="/static/js/batchadd.js?v=<%=timestamp()%>"></script>
+    <!-- end:   tabbable tabs
