@@ -2,11 +2,12 @@
 namespace app\controllers;
 
 use fastphp\base\Controller;
+use app\controllers\Account;
 use app\models\Mood;
 
 class Wall extends Account
 {
-    protected $response = Array();
+    protected $msg = Array();
 
     /**
      * 心情墙首页
@@ -23,35 +24,32 @@ class Wall extends Account
      * 显示全部心情
      * @return [type] [description]
      */
-    public function addMood()
+    public function sendMood()
     {
-        if( $this->isLogin() ){    //检查登录
-
-            if ( !empty($_POST) ) {  //有参数传递
-
-                $this->mood = $_POST['mood'];
-
-                if ( empty( $this->mood ) ) {
-                    $this->response['status'] = 400;
-                    $this->response['info'] = "心情为空";//js中弹窗提示
-                }
-                else{
-                    $this->setMood();
-                }
-            }
+        // 验证用户是否已登录
+        if( !$this->isLogin() ) {
+            $this->echoJsonMsg(400, USER_IS_NOT_LOGIN, '/account/login');
         }
-        else{
-            $this->response['status'] = 400;
-            $this->response['info'] = USER_IS_NOT_LOGIN;
-        }
-        echo json_encode($this->response, JSON_UNESCAPED_UNICODE);//当前返回数据
 
+        // 接收数据
+        if( !empty($_POST['mood']) ) {
+            $this->mood = $_POST['mood'];
+        } else {
+            $this->echoJsonMsg(400, "心情为空", '/wall/index');
+        }
+
+        // 设置事项
+        if( $this->setMood() ) {
+            $this->echoJsonMsg(200, "添加心情成功", '/wall/index');
+        } else {
+            $this->echoJsonMsg(400, "添加心情失败", '/wall/index');
+        }
     }
 
     /**
      * 设置心情数据库表
      */
-    public function setMood() {
+    private function setMood() {
         // 写心情
         date_default_timezone_set('PRC');//时区校准
 
@@ -60,7 +58,7 @@ class Wall extends Account
             'content' => $this->mood,
             'create_time' => time(),
             'update_time' => time(),
-            'user_name' => $this->user['user_name']   //获取用户ID，user继承自Account
+            'user_name' => $_SESSION['user']['user_name']  //获取用户ID，user继承自Account
         ];
 
         // $date_time=date('Y-m-d h:i:s', time());//日期转时间戳
@@ -68,29 +66,36 @@ class Wall extends Account
         $result = (new Mood())->insert($data); //写入数据库条数
 
         if( $result == 0) {
-            $this->response['status'] = 400;     //提示信息
-            $this->response['info'] = "添加失败";
+            // 插入失败
+            return false;
         } else {
-            $this->response['status'] = 200;     //提示信息
-            $this->response['info'] = "添加成功";
+            return true;
         }
-        $this->response['result'] = $result;
     }
 
+    public function acceptMoodList()
+    {
+        // 验证用户是否已登录
+        if( !$this->isLogin() ) {
+            $this->echoJsonMsg(400, USER_IS_NOT_LOGIN, '/account/login');
+        }
 
+        // 获取心情列表
+        $this->msg['moodList'] = $this->getMoodList();
+        // 判断心情列表是否为空
+        if( empty($this->msg['moodList']) ) {
+            $this->echoJsonMsg(200, "心情墙空空如也", '#');
+        } else {
+            // 成功获取心情列表
+            $this->echoJsonMsg(200, "获取心情列表成功", '#');
+        }
 
-    public function getMoodList()
+    }
+
+    private function getMoodList()
     {
         // 读取心情墙
         $moodList = (new Mood())->where()->order(['id DESC'])->selectAll();
-        if (empty($moodList)) {
-            $this->response['status'] = 400;
-            $this->response['info'] = "心情墙空空如也~";
-        } else {
-            $this->response['status'] = 200;
-            $this->response['info'] = "获取心情列表成功";
-            $this->response['moodList'] = $moodList;
-        }
-        echo json_encode($this->response, JSON_UNESCAPED_UNICODE);
+        return $moodList;
     }
 }
