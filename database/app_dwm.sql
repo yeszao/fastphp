@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-06-24 20:15:27
+Date: 2018-06-25 13:11:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -625,5 +625,4 @@ INSERT INTO `user` VALUES ('69', '1710404103@stu.hit.edu.cn', '20331707552239619
 INSERT INTO `user` VALUES ('70', '16093030187@stu.hit.edu.cn', '451078077135207312347512213831929312245985443539', 'teacher', 'uncheck', '蓝愿', '09', '', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '女', '178652547451', null);
 INSERT INTO `user` VALUES ('71', '1404101115@stu.hit.edu.cn', '-361735473740377713716974129590900844347161037385', 'teacher', 'uncheck', '温如冰', '04', '', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '女', '178652558305', null);
 INSERT INTO `user` VALUES ('72', '180250589@stu.hit.edu.cn', '27448831379610529705458180327439652040322018972', 'alu', 'uncheck', '温如冰', '02', '', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '2018-05-18 23:37:18', '女', '178631393363', null);
-INSERT INTO `user` VALUES ('77', '1504103101@stu.hit.edu.cn', '76cc31cedd4f22538514673e97ce64832ee0fadf', '', 'unchecked', '蓝思追', '', null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('78', '111', '011c945f30ce2cbafc452f39840f025693339c42', '', 'unchecked', '蓝忘机', '', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('77', '150410301@stu.hit.edu.cn', '76cc31cedd4f22538514673e97ce64832ee0fadf', '', 'unchecked', '蓝思追', '', null, null, null, null, null, null, null);
