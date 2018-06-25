@@ -22,41 +22,43 @@
 
                         <!-- start: 日程模板面板 -->
                         <div class="tab-pane active" id="template-pane">
-                            <div class="container">
+                            <div class="col-sm-8 col-sm-offset-2">
                                 <!-- start: 选择日期 -->
                                 <div class="row" style="margin-top: 10px;">
-                                    <div class="col-xs-8 col-xs-offset-1 col-sm-3  col-sm-offset-3">
-                                        <div class="form-group input-group">
+                                    <div class="col-xs-12  col-sm-5 col-sm-offset-3">
+                                        <div class="input-group">
                                             <span class="input-group-addon">开始日期</span>
                                             <input type="date" id="startDate" />
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-xs-8 col-xs-offset-1 col-sm-3  col-sm-offset-3">
-                                        <div class="form-group input-group">
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-xs-12  col-sm-5 col-sm-offset-3">
+                                        <div class="input-group">
                                             <span class="input-group-addon">结束日期</span>
                                             <input type="date" id="endDate" />
                                         </div>
                                     </div>
-                                    <div class="col-sm-2">
+                                </div>
+                                <div class="row" style="margin: 10px;">
+                                    <div class="col-xs-offset-8 col-sm-2 col-sm-offset-7">
                                         <button class="btn btn-success" id="applyTemplate" >应用</button>
                                     </div>
-                                    </div>
+                                </div>
                                 <!-- end:   选择日期 -->
 
                                 <div class="row">
                                     <!-- start: 日程表栏 -->
-                                    <div class="col-xs-8 col-sm-4 col-sm-offset-2">
+                                    <div class="col-xs-9 col-sm-8 ">
                                         <table class="table table-bordered table-condensed text-center" id="schedule-table">
                                             <thead>
                                                 <tr>
-                                                    <td>小时</td>
-                                                    <td>15 分</td>
-                                                    <td>30 分</td>
-                                                    <td>45 分</td>
-                                                    <td>60 分</td>
+                                                    <td>时</td>
+                                                    <td>15分</td>
+                                                    <td>30分</td>
+                                                    <td>45分</td>
+                                                    <td>60分</td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -426,7 +428,7 @@
                                     <!-- end:   日程表栏 -->
 
                                     <!-- start: 标签按钮列表栏 -->
-                                    <div class="col-xs-2 col-sm-offset-1">
+                                    <div class="col-xs-2">
                                         <table class="table table-condensed text-center" id="tag-button-table">
                                             <thead>
                                                 <tr>

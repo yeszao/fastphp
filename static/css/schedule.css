@@ -5,7 +5,7 @@
     overflow: hidden;			/* 内部元素溢出时，将其隐藏*/
     display: block;				/* 块级显示*/
     float: center;		/* 左浮动*/
-    width: 40px;
+    width: 35px;
     height: 40px;
     margin: auto;
     padding: 0;					/* 不设置内边距*/
@@ -18,7 +18,7 @@
 @media (min-width: 768px) {
 	.quarter-block {
 		width: 80px;
-	    /*height: 40px;*/
+		height: 40px;
 	}
 }
 
@@ -26,8 +26,14 @@
 	background-color: #BBFFFF;
 }
 
-
-/*文本垂直居中*/
+/* 标签按钮表格 */
 .table tbody tr td {
-    vertical-align: middle;
+    vertical-align: middle;	/*文本垂直居中 */
+}
+
+/*  */
+.label-btn {
+	width: 50px;
+	font-size: 10;
+	color:white;
 }
