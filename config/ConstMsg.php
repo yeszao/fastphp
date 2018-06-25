@@ -47,9 +47,10 @@
 	define('BELONG_DATE_IS_NULL', '请先选择日期 o(*￣︶￣*)o');
 	define('TAG_ID_IS_NULL', '请先选择标签 o(*￣︶￣*)o');
 	define('BLOCK_CODE_ARRAY_IS_NULL', '请先选择时间块 o(*￣︶￣*)o');
-	define('USER_TAG_LIST_IS_NULL', '该用户尚未添加标签');
-	define('USER_BLOCK_LIST_IS_NULL', '该用户尚未添加时间块');
-	define('GET_BLOCK_AND_TAG_SUCCESS', '获取块和标签信息成功');
+	define('TAG_LIST_IS_NULL', '该用户尚未添加标签');
+	define('BLOCK_LIST_IS_NULL', '该用户尚未添加时间块');
+	define('GET_TAG_SUCCESS', '获取标签信息成功');
+	define('GET_BLOCK_SUCCESS', '获取块信息成功');
 	define('ADD_ITEM_SUCCESS', '成功添加事项 (*^▽^*)');
 	define('ADD_ITEM_FAILED', '添加事项失败');
 
