@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-06-25 22:21:01
+Date: 2018-06-25 23:48:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -493,12 +493,6 @@ CREATE TABLE `mood` (
 -- ----------------------------
 -- Records of mood
 -- ----------------------------
-INSERT INTO `mood` VALUES ('8', '77', '用户密码加密', '1529631179', '1529631179', '蓝思追');
-INSERT INTO `mood` VALUES ('9', null, '你好哇', '1529636301', '1529636301', '蓝思追');
-INSERT INTO `mood` VALUES ('10', null, '你好哇', '1529636860', '1529636860', '蓝思追');
-INSERT INTO `mood` VALUES ('11', null, '应该可以了吧', '1529636932', '1529636932', '蓝思追');
-INSERT INTO `mood` VALUES ('12', null, '你好哇李银河', '1529637153', '1529637153', '蓝思追');
-INSERT INTO `mood` VALUES ('13', null, '部署 github 版本控制', '1529742301', '1529742301', '蓝思追');
 
 -- ----------------------------
 -- Table structure for `tag`
