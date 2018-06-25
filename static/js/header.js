@@ -12,12 +12,15 @@ window.onload = function(){
 function showInfoModal(status, info, url){
     $('#error-modal').modal('show');
     $('#error-modal').on('shown.bs.modal', function() {
+
         // 清空数据
         $('#error-modal-body').text("");
+
         // 显示提示信息
         $('#error-modal-body').append("状态：" + status + "<br></br>");
         $('#error-modal-body').append("提示信息：" + info + "<br></br>");
         $('#error-modal-body').append("跳转链接：" + url + "<br></br>");
+
         // 跳转到指定链接
         $('#error-modal-url').click(function() {
             // 跳转到指定页面
@@ -37,6 +40,11 @@ function showBlock(blockList){
     var blockDom;  // 块 Dom 对象
     var blockColor; // 块背景颜色
     var blockText;  // 块文本
+
+    $(".quarter-block").each(function(k,v){
+        // 移除样式
+        $(this).removeClass("selected");
+    });
 
     // 还原所有块的背景颜色
     for (var i = 0; i < 24; i++) {
@@ -151,7 +159,7 @@ $(function(){
                 blockCodeArray.splice($.inArray(blockCode, blockCodeArray), 1);
 
                 // 测试信息展示
-                $('#debug-info').append("<br><br> 重复选中块：");
+                $('#debug-info').append("<br><br> 取消选中块：");
                 $('#debug-info').append("<br> returnBlockList ：" + JSON.stringify(returnBlockList) );
                 $('#debug-info').append("<br> blockCodeArray :" + JSON.stringify(blockCodeArray) );
 
