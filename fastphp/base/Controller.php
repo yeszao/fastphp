@@ -25,8 +25,17 @@ class Controller
     }
 
     // 渲染视图
-    public function render()
+    public function fetch($layout='')
     {
-        $this->_view->render();
+        $this->_view->render($layout);
+    }
+
+    // 展示提示信息并跳转到指定链接
+    public function success($successInfo, $redirectUrl)
+    {
+        $this->_view->assign('successInfo', $successInfo);
+        $this->_view->assign('redirectUrl', $redirectUrl);
+        $this->_view->assign('title', '跳转中');
+        $this->_view->render('success');
     }
 }

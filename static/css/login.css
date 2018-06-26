@@ -1,0 +1,21 @@
+/**
+ * 登陆框
+ */
+.panel-login {
+	width: 300px;
+	height: 255px;
+	margin-top: 10vh;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.panel-login .panel-heading{
+    display: block;
+    font-size: 35px;
+    font-weight: 700;
+    border-bottom: 1px solid #f0f0f0;
+}
+.panel-login .form {
+	margin-left: 15%;
+	margin-right: 15%;
+}

@@ -1,0 +1,35 @@
+
+    .testDiv {
+        width: 100%;
+        /*background-color: #eee;*/
+        /*border: solid 2px #f00;  */
+        /*padding: 10px;  */
+    }
+
+    .list_emotion{
+        /*border: solid 1px #eeeeee;*/
+    /*background-color: #00ff90;*/
+    }
+/*
+    .list_user_id{
+        font-family: Sans-serif,Serif;
+        background-color: #eee;
+        font-size: 16px;
+    }*/
+
+    .list_date{
+        /*background-color: #eee;*/
+        font-family: Sans-serif,Serif;
+        /*font-size: 16px;position:relative;
+        top:50%;
+        transform:translateY(-50%);*/
+        /**/
+    }
+
+    .list_content{
+        text-indent: 30px;
+        /*background-color: #eee;*/
+        color: #666;
+        font-family: Sans-serif,Serif;
+        font-size: 16px;
+    }

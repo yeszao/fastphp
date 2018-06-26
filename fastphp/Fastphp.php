@@ -29,9 +29,14 @@ class Fastphp
         $this->route();
     }
 
-    // 路由处理
+    /**
+     * 路由处理
+     * 主要作用是：截取URL，并解析出控制器名、方法名和URL参数
+     * @return [type] [description]
+     */
     public function route()
     {
+        // 默认控制器、方法、参数
         $controllerName = $this->config['defaultController'];
         $actionName = $this->config['defaultAction'];
         $param = array();
@@ -43,26 +48,27 @@ class Fastphp
         // 删除前后的“/”
         $url = trim($url, '/');
 
+        // 将URL分割为 controllerName、actionName 和 queryString
         if ($url) {
             // 使用“/”分割字符串，并保存在数组中
             $urlArray = explode('/', $url);
             // 删除空的数组元素
             $urlArray = array_filter($urlArray);
-            
+
             // 获取控制器名
             $controllerName = ucfirst($urlArray[0]);
-            
+
             // 获取动作名
             array_shift($urlArray);
             $actionName = $urlArray ? $urlArray[0] : $actionName;
-            
+
             // 获取URL参数
             array_shift($urlArray);
             $param = $urlArray ? $urlArray : array();
         }
 
         // 判断控制器和操作是否存在
-        $controller = 'app\\controllers\\'. $controllerName . 'Controller';
+        $controller = 'app\\controllers\\'. $controllerName ;
         if (!class_exists($controller)) {
             exit($controller . '控制器不存在');
         }

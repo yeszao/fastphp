@@ -1,0 +1,37 @@
+<!-- 引入自定义 css js-->
+<link rel="stylesheet" href="/static/css/wall.css?v=<%=timestamp()%>"  type="text/css">
+<!-- 用时间戳动态加载 js 解决浏览器缓存 -->
+<script src="/static/js/wall.js?v=<%=timestamp()%>"></script>
+
+    <!-- start: wall panel -->
+    <div class="container body-container">
+
+        <!-- start: 心情墙面板 -->
+        <div class="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h3 class="alert alert-danger">心情墙</h3>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea name="content" id="mood" rows="5" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-primary" type="button" value="添加心情" onclick="javascript:sendMood();">
+                </div>
+
+                <!-- start：心情列表 -->
+                <div class="testDiv">
+                    <div class="container">
+                    </div>
+                </div>
+                <!-- end：   心情列表 -->
+
+            </div>
+        </div>
+        <!-- end:   心情墙面板 -->
+
+    </div>
+    <!-- end:   wall panel -->
