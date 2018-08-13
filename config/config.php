@@ -1,10 +1,10 @@
 <?php
 
 // 数据库配置
-$config['db']['host'] = 'mysql';
+$config['db']['host'] = 'localhost';
 $config['db']['username'] = 'root';
-$config['db']['password'] = '123456';
-$config['db']['dbname'] = 'project';
+$config['db']['password'] = 'root';
+$config['db']['dbname'] = 'demo';
 
 // 默认控制器和操作名
 $config['defaultController'] = 'Item';
