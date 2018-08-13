@@ -40,6 +40,13 @@ class Fastphp
         // 清除?之后的内容
         $position = strpos($url, '?');
         $url = $position === false ? $url : substr($url, 0, $position);
+
+        // 使得可以这样访问 index.php/{controller}/{action}
+        $position = strpos($url, 'index.php');
+        if ($position !== false) {
+            $url = substr($url, $position + strlen('index.php'));
+        }
+
         // 删除前后的“/”
         $url = trim($url, '/');
 
